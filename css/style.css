@@ -1,17 +1,16 @@
 body {
-  background-color: #e8e9eb;
+  background-color: #ececee;
   font-family: "Open Sans";
   color: black;
 }
 
 /* Navbar style */
 nav {
-  background-color: #e0dfd5;
-  border-bottom: #8e6c88 3px solid;
+  background-color: white;
   box-shadow: 0px 5px 5px rgb(20, 20, 20, 0.2);
 }
 nav a {
-  font-size: 150%;
+  font-size: 130%;
   color: black;
 }
 nav a:hover {
@@ -20,29 +19,32 @@ nav a:hover {
 }
 
 .nav-icon {
-  font-size: 160% !important;
+  font-size: 140% !important;
 }
 
 /* Blog name */
 #blogName {
   position: relative;
-  min-height: 300px;
-  background: url("../img/blog-name.jpg");
+  min-height: 500px;
+  background: url("../img/blog-name-2.jpg");
   background-position: center;
   background-repeat: no-repeat;
+  /* background-attachment: fixed; */
   text-align: center;
-  border-bottom: #8e6c88 3px solid;
+  color: #1e1e24;
 }
 
 /* Blogs area */
 #blogsArea {
+  color: #1e1e24;
 }
 
 /* Blog post */
 .blog-post {
-  color: #fff;
-  background-color: #313638;
-  border: #8e6c88 3px solid;
+  color: #1e1e24;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgb(20, 20, 20, 0.2);
+  margin-top: 50px !important;
 }
 .blog-post h3 {
   font-size: 300%;
@@ -52,8 +54,16 @@ nav a:hover {
   font-size: large;
 }
 .card-footer {
-  background-color: #e0dfd5;
-  border-top: #8e6c88 2px solid;
+  background-color: #eee;
+}
+.btn-light {
+  background-color: #fff !important;
+  box-shadow: 0px 0px 10px rgb(20, 20, 20, 0.1);
+  border-radius: 5px;
+}
+.btn-light:hover {
+  background-color: #5a6268 !important;
+  color: white !important;
 }
 
 .blockquote-footer {
@@ -67,20 +77,21 @@ nav a:hover {
 
 /* Author info */
 #authorInfo {
-  font-size: 150%;
+  font-size: 130%;
 }
 
 /* Search area */
 .search-area {
-  background-color: #e0dfd5;
-  border: #8e6c88 3px solid;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgb(20, 20, 20, 0.2);
 }
 
 /* Footer */
 #mainFooter {
-  border-top: #8e6c88 2px solid;
-  background-color: #e0dfd5;
+  background-color: white;
   font-size: 150%;
+  color: #1e1e24;
+  margin-top: 100px !important;
 }
 
 /* Utils */
@@ -90,7 +101,7 @@ nav a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 hr {
@@ -99,4 +110,18 @@ hr {
   height: 3px;
   background-color: #333;
   border-radius: 15px;
+}
+
+.display-4 {
+  font-size: 250%;
+}
+
+.btn-go {
+  box-shadow: 0px 0px 10px rgb(20, 20, 20, 0.1);
+  background-color: #1e1e24;
+  color: white;
+}
+.btn-go:hover {
+  background-color: white;
+  color: #1e1e24;
 }
