@@ -1,20 +1,24 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Navbar } from "./components/layout/Navbar";
-import { BlogHero } from "./components/layout/BlogHero";
 import { Footer } from "./components/layout/Footer";
 import { Homepage } from "./components/homepage/Homepage";
+import { About } from "./components/about/About";
+import { Blog } from "./components/blog/Blog";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar />
-      {/* Items variants */}
-      <BlogHero />
-      <Homepage />
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route exact path="/blog" component={Blog} />
+        <Route exact path="/about" component={About} />
+      </Switch>
       <Footer />
-    </div>
+    </Router>
   );
 }
 
