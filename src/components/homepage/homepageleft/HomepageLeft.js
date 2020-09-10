@@ -1,5 +1,6 @@
 import React from "react";
-import { HomepageBlogPost } from "./HomepageBlogPost";
+import { BlogPostPreview } from "../../blog/blogposts/BlogPostPreview";
+import { Link } from "react-router-dom";
 
 export const HomepageLeft = () => {
   return (
@@ -9,13 +10,13 @@ export const HomepageLeft = () => {
           <div className="container ml-auto">
             <h2 className="display-4">Recent Posts</h2>
             <hr />
-            <HomepageBlogPost />
-            <HomepageBlogPost />
-            <HomepageBlogPost />
+            <BlogPostPreview />
+            <BlogPostPreview />
+            <BlogPostPreview />
           </div>
-          <a href="#" className="btn btn-go d-block btn-lg mt-5 mb-4">
+          <Link to="/blog" className="btn btn-go d-block btn-lg mt-5 mb-4">
             Check all posts
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
-import { BlogPost } from "./BlogPost";
+import { BlogPostPreview } from "./BlogPostPreview";
 
 export const BlogPosts = () => {
   return (
     <Fragment>
       <h2 className="display-4">All Posts</h2>
       <hr />
-      <BlogPost />
-      <BlogPost />
-      <BlogPost />
+      <BlogPostPreview />
+      <BlogPostPreview />
+      <BlogPostPreview />
     </Fragment>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const BlogPost = () => {
+export const BlogPostPreview = () => {
   return (
     <div className="card my-3 blog-post">
       <div className="card-body p-5">
@@ -13,9 +14,15 @@ export const BlogPost = () => {
           distinctio reprehenderit adipisci iusto, voluptates omnis nemo eveniet
           nulla eius itaque.
         </p>
-        <a className="btn btn-light btn-lg float-right" href="blog-post.html">
+        <Link className="btn btn-light btn-lg float-right" to="/blog/blog-post">
           Read More
-        </a>
+        </Link>
+        <Link
+          className="btn btn-go d-block btn-lg float-right"
+          to="/blog/blog-post"
+        >
+          Edit
+        </Link>
       </div>
       <footer className="card-footer p-3">
         <footer className="blockquote-footer">
@@ -25,10 +32,10 @@ export const BlogPost = () => {
           Tags :{" "}
           <a href="#" className="btn badge badge-primary text-white">
             Divers
-          </a>
+          </a>{" "}
           <a href="#" className="btn badge badge-danger text-white">
             Tech
-          </a>
+          </a>{" "}
           <a href="#" className="btn badge badge-success text-white">
             Lifestyle
           </a>
