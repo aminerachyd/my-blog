@@ -1,9 +1,18 @@
 import React from "react";
+import { AboutMe } from "./AboutMe";
+import { Portfolio } from "./portfolio/Portfolio";
 
 export const About = () => {
   return (
-    <div>
-      <h3>About</h3>
+    <div className="container mt-100">
+      <div className="row">
+        <div className="col">
+          <div className="container">
+            <AboutMe />
+            <Portfolio />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
