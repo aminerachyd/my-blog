@@ -6,15 +6,15 @@ export const HomepageTopics = () => {
       <h2 className="display-4 text-right">Topics</h2>
       <hr />
       <div className="d-flex flex-column row-hl">
-        <btn className="btn btn-primary btn-lg item-hl text-center my-2">
+        <button className="btn btn-primary btn-lg item-hl text-center my-2">
           Divers
-        </btn>
-        <btn className="btn btn-danger btn-lg item-hl text-center my-2">
+        </button>
+        <button className="btn btn-danger btn-lg item-hl text-center my-2">
           Tech
-        </btn>
-        <btn className="btn btn-success btn-lg item-hl text-center my-2">
+        </button>
+        <button className="btn btn-success btn-lg item-hl text-center my-2">
           Lifestyle
-        </btn>
+        </button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -12,7 +12,13 @@ import { SingleBlogPost } from "./components/singleblogpost/SingleBlogPost";
 import { Provider } from "react-redux";
 import store from "./store";
 
+import axios from "axios";
+
 function App() {
+  useEffect(() => {
+    // Chi7aja kat executa mra w7da
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>

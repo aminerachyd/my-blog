@@ -2,8 +2,8 @@ import { GET_ITEMS, ADD_ITEM, DELETE_ITEM } from "../actions/types";
 
 const initialState = {
   items: [
-    { id: 1, name: milk },
-    { id: 2, name: milk },
+    { id: 1, name: "milk" },
+    { id: 2, name: "milk" },
   ],
 };
 
