@@ -12,11 +12,12 @@ import { SingleBlogPost } from "./components/singleblogpost/SingleBlogPost";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import axios from "axios";
+import axios from "./axiosConfig";
 
 function App() {
   useEffect(() => {
-    // Chi7aja kat executa mra w7da
+    // TODO fetch stuff from the backend
+    axios.get("/").then((res) => console.log(res.data));
   }, []);
 
   return (
