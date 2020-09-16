@@ -64,22 +64,54 @@ router.post("/paragraphs", postImage, async (req, res) => {
 });
 
 // @method PUT
-// @return Add a new paragraph (object) to collection
-// @desc Adds a new paragraph (text+image) to the about section
+// @return Updates a paragraph
+// @desc Updates a paragraph based on its ID
 router.put("/paragraphs/:id", postImage, async (req, res) => {
   try {
-    // Getting image link from the middleware
-    const imageLink = req.someVar;
+    const docSnapshot = await paragraphsCollection.doc(req.params.id).get();
+    if (docSnapshot.data()) {
+      let paragraphUpdate;
 
-    const paragraph = {
-      order: req.body.order,
-      text: req.body.text,
-      image: imageLink,
-    };
+      if (req.someVar) {
+        paragraphUpdate = {
+          order: req.body.order,
+          text: req.body.text,
+          image: req.someVar,
+        };
+      } else {
+        paragraphUpdate = {
+          order: req.body.order,
+          text: req.body.text,
+        };
+      }
 
-    await paragraphsCollection.add(paragraph);
+      await paragraphsCollection.doc(req.params.id).update(paragraphUpdate);
 
-    res.send("New Paragraph Added");
+      res.send(`Paragraph ${req.params.id} Updated`);
+    } else {
+      res.status(400).send("Paragraph not found");
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @method DELETE
+// @return Deletes a paragraph
+// @desc Deletes a paragraph based on its ID
+router.delete("/paragraphs/:id", async (req, res) => {
+  try {
+    const docSnapshot = await paragraphsCollection.doc(req.params.id).get();
+    if (docSnapshot.data()) {
+      await paragraphsCollection.doc(req.params.id).delete();
+
+      res.send(`Paragraph ${req.params.id} Deleted`);
+    } else {
+      res.status(400).send("Paragraph not found");
+      return;
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("Server Error");
