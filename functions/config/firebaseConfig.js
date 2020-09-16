@@ -1,7 +1,22 @@
-const admin = require("firebase-admin");
+const firebase = require("firebase/app");
+require("firebase/storage");
+require("firebase/firestore");
 
-admin.initializeApp();
+const firebaseConfig = {
+  apiKey: "AIzaSyCbgo9jNjZCXKVomS_IY0p5V8CG6VBmpKM",
+  authDomain: "my-blog-21acb.firebaseapp.com",
+  databaseURL: "https://my-blog-21acb.firebaseio.com",
+  projectId: "my-blog-21acb",
+  storageBucket: "my-blog-21acb.appspot.com",
+  messagingSenderId: "543182037778",
+  appId: "1:543182037778:web:17497045925635bea3c9cb",
+  measurementId: "G-8F2LKBT5W6",
+};
 
-const firestore = admin.firestore();
+firebase.initializeApp(firebaseConfig);
 
-module.exports = { firestore };
+const firestore = firebase.firestore();
+
+const storage = firebase.storage();
+
+module.exports = { firestore, storage };
