@@ -7,7 +7,8 @@ const paragraphsCollection = firestore.collection("paragraphs");
 
 const router = express.Router();
 
-// TODO continue API route
+// @route   GET api/about/paragraphs
+// @desc    Retrieves all the paragraphs from the database
 router.get("/paragraphs", async (req, res) => {
   try {
     const snapshot = await paragraphsCollection.orderBy("order").get();
@@ -34,9 +35,8 @@ router.get("/paragraphs", async (req, res) => {
   }
 });
 
-// @method POST
-// @return Add a new paragraph (object) to collection
-// @desc Adds a new paragraph (text+image) to the about section
+// @route   POST api/about/paragraphs
+// @desc    Adds a new paragraph (text+image) to the about section
 router.post("/paragraphs", postImage, async (req, res) => {
   try {
     let paragraph;
@@ -63,9 +63,8 @@ router.post("/paragraphs", postImage, async (req, res) => {
   }
 });
 
-// @method PUT
-// @return Updates a paragraph
-// @desc Updates a paragraph based on its ID
+// @route  PUT api/about/paragraphs/:id
+// @desc   Updates a paragraph based on its ID
 router.put("/paragraphs/:id", postImage, async (req, res) => {
   try {
     const docSnapshot = await paragraphsCollection.doc(req.params.id).get();
@@ -98,9 +97,8 @@ router.put("/paragraphs/:id", postImage, async (req, res) => {
   }
 });
 
-// @method DELETE
-// @return Deletes a paragraph
-// @desc Deletes a paragraph based on its ID
+// @route  DELETE api/about/paragraphs/:id
+// @desc   Deletes a paragraph based on its ID
 router.delete("/paragraphs/:id", async (req, res) => {
   try {
     const docSnapshot = await paragraphsCollection.doc(req.params.id).get();

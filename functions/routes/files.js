@@ -12,8 +12,7 @@ const storageRef = storage.ref();
 // Images storage reference
 const imagesRef = storageRef.child("images");
 
-// @method  GET
-// @return  Array of images
+// @route   GET api/files/images
 // @desc    Returns an array of the images in the database
 router.get("/images", async (req, res) => {
   try {
@@ -40,8 +39,7 @@ router.get("/images", async (req, res) => {
   }
 });
 
-// @method  POST
-// @return  Stores image link in Firestore
+// @route   POST api/files/images
 // @desc    Uploads an image to Storage and stores its download link in Firestore
 router.post("/images", postImage, async (req, res) => {
   req.someVar
@@ -49,8 +47,7 @@ router.post("/images", postImage, async (req, res) => {
     : res.end("No Image To Upload");
 });
 
-// @method  GET
-// @return  One image
+// @route   GET api/files/images/:id
 // @desc    Returns an image based on the ID given
 router.get("/images/:id", async (req, res) => {
   try {
@@ -68,8 +65,7 @@ router.get("/images/:id", async (req, res) => {
   }
 });
 
-// @method  DELETE
-// @return  Deletes an image
+// @route   DELETE api/files/images/:id
 // @desc    Deletes an image based on the ID given
 router.delete("/images/:id", async (req, res) => {
   try {

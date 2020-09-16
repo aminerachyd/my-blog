@@ -5,9 +5,8 @@ const router = express.Router();
 
 const postsCollection = firestore.collection("posts");
 
-// @method GET
-// @return Array of posts (objects)
-// @desc Gets all posts of the database
+// @route   GET api/posts
+// @desc    Gets all posts of the database
 router.get("/", async (req, res) => {
   try {
     const snapshot = await postsCollection.orderBy("createdAt", "desc").get();
@@ -35,9 +34,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @method GET
-// @return One single post (object)
-// @desc Gets a specefic post from the database with its ID
+// @route   GET api/posts/:id
+// @desc    Gets a specefic post from the database with its ID
 router.get("/:id", async (req, res) => {
   try {
     const docSnapshot = await postsCollection.doc(req.params.id).get();
@@ -55,9 +53,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// @method POST
-// @return Add a post (object)
-// @desc Adds a post to the database
+// @route   POST api/posts
+// @desc    Adds a post to the database
 router.post("/", async (req, res) => {
   try {
     const date = new Date().toUTCString();
@@ -78,9 +75,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// @method DELETE
-// @return Delete a single post (object)
-// @desc Deletes a specefic post from the database with its ID
+// @route   DELETE api/posts/:id
+// @desc    Deletes a specefic post from the database with its ID
 router.delete("/:id", async (req, res) => {
   try {
     const docSnapshot = await postsCollection.doc(req.params.id).get();
@@ -100,9 +96,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// @method PUT
-// @return Update a single post (object)
-// @desc Updates a specefic post from the database with its ID
+// @route   PUT api/posts/:id
+// @desc    Updates a specefic post from the database with its ID
 router.put("/:id", async (req, res) => {
   try {
     const docSnapshot = await postsCollection.doc(req.params.id).get();
