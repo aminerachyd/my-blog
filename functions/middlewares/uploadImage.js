@@ -7,7 +7,7 @@ const storageRef = storage.ref();
 // Images storage reference
 const imagesRef = storageRef.child("images");
 
-module.exports = sendImage = async (req, res, next) => {
+module.exports = uploadImage = async (req, res, next) => {
   try {
     if (req.files[0]) {
       // originalname is the name of the file

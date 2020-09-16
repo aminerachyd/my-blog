@@ -2,15 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 // Middleware for uploading images
-const postImage = require("../middleware/postImage");
+const uploadImage = require("../middlewares/uploadImage");
 
-const { firestore, storage } = require("../config/firebaseConfig");
+const { firestore } = require("../config/firebaseConfig");
 const imagesCollection = firestore.collection("images");
-
-// Storage reference
-const storageRef = storage.ref();
-// Images storage reference
-const imagesRef = storageRef.child("images");
 
 // @route   GET api/files/images
 // @desc    Returns an array of the images in the database
@@ -41,7 +36,7 @@ router.get("/images", async (req, res) => {
 
 // @route   POST api/files/images
 // @desc    Uploads an image to Storage and stores its download link in Firestore
-router.post("/images", postImage, async (req, res) => {
+router.post("/images", uploadImage, async (req, res) => {
   req.someVar
     ? res.json({ msg: "New Image Added", link: req.someVar })
     : res.end("No Image To Upload");

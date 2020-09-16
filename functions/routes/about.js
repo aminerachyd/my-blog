@@ -1,7 +1,7 @@
 const express = require("express");
 const { firestore } = require("../config/firebaseConfig");
 
-const postImage = require("../middleware/postImage");
+const uploadImage = require("../middlewares/uploadImage");
 
 const paragraphsCollection = firestore.collection("paragraphs");
 
@@ -37,7 +37,7 @@ router.get("/paragraphs", async (req, res) => {
 
 // @route   POST api/about/paragraphs
 // @desc    Adds a new paragraph (text+image) to the about section
-router.post("/paragraphs", postImage, async (req, res) => {
+router.post("/paragraphs", uploadImage, async (req, res) => {
   try {
     let paragraph;
 
@@ -65,7 +65,7 @@ router.post("/paragraphs", postImage, async (req, res) => {
 
 // @route  PUT api/about/paragraphs/:id
 // @desc   Updates a paragraph based on its ID
-router.put("/paragraphs/:id", postImage, async (req, res) => {
+router.put("/paragraphs/:id", uploadImage, async (req, res) => {
   try {
     const docSnapshot = await paragraphsCollection.doc(req.params.id).get();
     if (docSnapshot.data()) {
