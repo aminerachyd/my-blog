@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export const BlogPostPreview = ({
-  id,
-  post: { title, body, lastUpdated, tags },
+  post: { id, title, body, lastUpdated, tags },
 }) => {
   return (
     <div className="card my-3 blog-post">
       <div className="card-body p-5">
         <h3 className="card-title">{title}</h3>
         <p className="card-text">{body}</p>
-        <Link className="btn btn-light btn-lg float-right" to="/blog/blog-post">
+        <Link
+          className="btn btn-light btn-lg float-right"
+          to={"/blog/blog-post/" + id}
+        >
           Read More
         </Link>
         <Link

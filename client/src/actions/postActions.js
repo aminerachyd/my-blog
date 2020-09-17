@@ -1,5 +1,5 @@
 import axios from "../axiosConfig";
-import { GET_POSTS, POST_ERROR } from "./types";
+import { GET_POSTS, GET_POST, POST_ERROR } from "./types";
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -13,7 +13,27 @@ export const getPosts = () => async (dispatch) => {
     dispatch({
       type: POST_ERROR,
       payload: {
-        //   TODO fix error message
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
+      },
+    });
+  }
+};
+
+export const getPost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/posts/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        //   TODO fix error system
         msg: "Server Error",
         status: 500,
       },

@@ -1,30 +1,59 @@
-import React from "react";
+import React, { Fragment, useEffect } from "react";
+import Moment from "react-moment";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export const SingleBlogPost = () => {
-  return (
+// Redux
+import { getPost } from "../../actions/postActions";
+import { connect } from "react-redux";
+
+const SingleBlogPost = ({
+  getPost,
+  post: {
+    post: { id, title, body, tags, lastUpdated, createdAt },
+    loading,
+  },
+  match,
+}) => {
+  useEffect(() => {
+    getPost(match.params.id);
+  }, [getPost]);
+
+  return loading ? (
+    <Fragment>Post Loading</Fragment>
+  ) : (
     <div className="container mt-100">
       <div className="row">
         <div className="row">
           <div className="col">
             <div className="container">
-              <h2 className="display-4">Blog post 1</h2>
+              <h2 className="display-4">{title}</h2>
               <div className="row">
                 <div className="col">
-                  <span className="h4 d-block"> Last updated : Jul 20 </span>
+                  <span className="h4 d-block">
+                    {" "}
+                    Created at :{" "}
+                    <Moment format="DD/MM/YYYY">{createdAt}</Moment>{" "}
+                  </span>
+                  <span className="h4 d-block">
+                    {" "}
+                    Last updated :{" "}
+                    <Moment format="DD/MM/YYYY">{lastUpdated}</Moment>{" "}
+                  </span>
                 </div>
                 <div className="col">
                   <span className="blockquote-footer ml-auto d-block text-right">
                     Tags :{" "}
-                    <a href="#" className="btn badge badge-danger text-white">
-                      Tech
-                    </a>{" "}
-                    <a href="#" className="btn badge badge-primary text-white">
-                      Divers
-                    </a>{" "}
-                    <a href="#" className="btn badge badge-success text-white">
-                      Lifestyle
-                    </a>
+                    {tags.map((tag) => (
+                      <Fragment>
+                        <a
+                          href="#"
+                          className="btn badge badge-danger text-white"
+                        >
+                          {tag}
+                        </a>{" "}
+                      </Fragment>
+                    ))}
                   </span>
                 </div>
               </div>
@@ -33,74 +62,16 @@ export const SingleBlogPost = () => {
               <div className="card my-3 blog-post">
                 <div className="card-body p-5">
                   <div className="row mb-3 blog-paragraph">
+                    {/* TODO implement images
                     <div className="col-lg-5 text-center">
                       <img
                         className=""
                         src="https://source.unsplash.com/random/301x200"
                         alt=""
                       />
-                    </div>
+                    </div> */}
                     <div className="col">
-                      <p className="card-text my-2">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Autem qui harum ab? Unde numquam nulla eius animi
-                        assumenda recusandae quasi explicabo magnam iure fugit?
-                        Fugiat, voluptas! Autem modi cumque fuga esse nesciunt
-                        veritatis error eligendi dolor labore. Sed asperiores
-                        distinctio reprehenderit adipisci iusto, voluptates
-                        omnis nemo eveniet nulla eius itaque.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="row mb-3 blog-paragraph">
-                    <div className="col-lg-5 order-2 text-center">
-                      <img
-                        src="https://source.unsplash.com/random/300x200"
-                        alt=""
-                      />
-                    </div>
-                    <div className="col">
-                      <p className="card-text my-2">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Autem qui harum ab? Unde numquam nulla eius animi
-                        assumenda recusandae quasi explicabo magnam iure fugit?
-                        Fugiat, voluptas! Autem modi cumque fuga esse nesciunt
-                        veritatis error eligendi dolor labore. Sed asperiores
-                        distinctio reprehenderit adipisci iusto, voluptates
-                        omnis nemo eveniet nulla eius itaque.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="row mb-3 blog-paragraph">
-                    <div className="col">
-                      <p className="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Autem qui harum ab? Unde numquam nulla eius animi
-                        assumenda recusandae quasi explicabo magnam iure fugit?
-                        Fugiat, voluptas! Autem modi cumque fuga esse nesciunt
-                        veritatis error eligendi dolor labore. Sed asperiores
-                        distinctio reprehenderit adipisci iusto, voluptates
-                        omnis nemo eveniet nulla eius itaque.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="row mb-3 blog-paragraph">
-                    <div className="col-lg-5 order-2 text-center">
-                      <img
-                        src="https://source.unsplash.com/random/500x400"
-                        alt=""
-                      />
-                    </div>
-                    <div className="col">
-                      <p className="card-text my-2">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Autem qui harum ab? Unde numquam nulla eius animi
-                        assumenda recusandae quasi explicabo magnam iure fugit?
-                        Fugiat, voluptas! Autem modi cumque fuga esse nesciunt
-                        veritatis error eligendi dolor labore. Sed asperiores
-                        distinctio reprehenderit adipisci iusto, voluptates
-                        omnis nemo eveniet nulla eius itaque.
-                      </p>
+                      <p className="card-text my-2">{body}</p>
                     </div>
                   </div>
                 </div>
@@ -116,3 +87,14 @@ export const SingleBlogPost = () => {
     </div>
   );
 };
+
+SingleBlogPost.propTypes = {
+  getPost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  post: state.post,
+});
+
+export default connect(mapStateToProps, { getPost })(SingleBlogPost);

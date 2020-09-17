@@ -7,8 +7,6 @@ global.XMLHttpRequest = require("xhr2");
 const fileMiddleware = require("express-multipart-file-parser");
 const cors = require("cors");
 
-// TODO Make the backend
-
 const app = express();
 
 // Middlewares
