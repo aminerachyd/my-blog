@@ -8,15 +8,15 @@ import { getPosts } from "../../../actions/postActions";
 
 const HomepagePosts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
-    // TODO fetch stuff from the backend
     getPosts();
   }, [getPosts]);
 
   return loading ? (
+    //  TODO Maybe a loading spinner ?
     <Fragment>Posts Loading</Fragment>
   ) : (
     <Fragment>
-      {posts.map((post) => (
+      {posts.slice(0, 3).map((post) => (
         <BlogPostPreview key={post.id} post={post} />
       ))}
     </Fragment>
