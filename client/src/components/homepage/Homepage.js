@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { HomepageLeft } from "./homepageleft/HomepageLeft";
+import HomepageLeft from "./homepageleft/HomepageLeft";
 import { HomepageRight } from "./homepageright/HomepageRight";
 import { BlogHero } from "./BlogHero";
 

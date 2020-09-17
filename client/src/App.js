@@ -9,17 +9,11 @@ import { About } from "./components/about/About";
 import { Blog } from "./components/blog/Blog";
 import { SingleBlogPost } from "./components/singleblogpost/SingleBlogPost";
 
+// Redux
 import { Provider } from "react-redux";
 import store from "./store";
 
-import axios from "./axiosConfig";
-
 function App() {
-  useEffect(() => {
-    // TODO fetch stuff from the backend
-    axios.get("/").then((res) => console.log(res.data));
-  }, []);
-
   return (
     <Provider store={store}>
       <Router>
