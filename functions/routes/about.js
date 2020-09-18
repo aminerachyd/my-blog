@@ -4,8 +4,13 @@ const { firestore } = require("../config/firebaseConfig");
 const uploadImage = require("../middlewares/uploadImage");
 
 const paragraphsCollection = firestore.collection("paragraphs");
+const projectsCollection = firestore.collection("projects");
 
 const router = express.Router();
+
+// TODO Add GETs by ID ?
+
+// ### PARAGRAPHS ###
 
 // @route   GET api/about/paragraphs
 // @desc    Retrieves all the paragraphs from the database
@@ -108,6 +113,122 @@ router.delete("/paragraphs/:id", async (req, res) => {
       res.send(`Paragraph ${req.params.id} Deleted`);
     } else {
       res.status(400).send("Paragraph not found");
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// ### PROJECTS ###
+
+// @route  GET api/about/projects
+// @desc   Retrieves all projects
+router.get("/projects", async (req, res) => {
+  try {
+    const snapshot = await projectsCollection.get();
+
+    let projects = [];
+
+    snapshot.forEach((doc) => {
+      const { image, title, link, description } = doc.data();
+
+      const projectItem = {
+        id: doc.id,
+        image,
+        title,
+        link,
+        description,
+      };
+
+      projects.push(projectItem);
+    });
+
+    res.send(projects);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route  POST api/about/projects
+// @desc   Adds a new project to the portfolio section
+router.post("/projects", uploadImage, async (req, res) => {
+  try {
+    let project;
+
+    if (req.someVar) {
+      project = {
+        title: req.body.title,
+        description: req.body.description,
+        link: req.body.link,
+        image: req.someVar,
+      };
+    } else {
+      project = {
+        title: req.body.title,
+        description: req.body.description,
+        link: req.body.link,
+      };
+    }
+
+    await projectsCollection.add(project);
+
+    res.send("New Project Added");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route  PUT api/about/projects:id
+// @desc   Updates a project based on its ID
+router.put("/projects/:id", uploadImage, async (req, res) => {
+  try {
+    const docSnapshot = projectsCollection.doc(req.params.id).get();
+    if (docSnapshot.data()) {
+      let projectUpdate;
+
+      if (req.someVar) {
+        projectUpdate = {
+          image: req.someVar,
+          title: req.body.title,
+          description: req.body.description,
+          link: req.body.link,
+        };
+      } else {
+        projectUpdate = {
+          title: req.body.title,
+          description: req.body.description,
+          link: req.body.link,
+        };
+      }
+
+      await projectsCollection.doc(req.params.id).update(projectUpdate);
+
+      res.send(`Project ${req.params.id} Updated`);
+    } else {
+      res.status(400).send("Project not found");
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route  DELETE api/about/projects:id
+// @desc   Deletes a project based on its ID
+router.delete("/projects/:id", async (req, res) => {
+  try {
+    const docSnapshot = await projectsCollection.doc(req.params.id).get();
+    if (docSnapshot.data()) {
+      await projectsCollection.doc(req.params.id).delete();
+
+      res.send(`Project ${req.params.id} Deleted`);
+    } else {
+      res.status(400).send("Project not found");
       return;
     }
   } catch (error) {
