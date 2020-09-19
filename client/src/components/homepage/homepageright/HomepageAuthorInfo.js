@@ -11,7 +11,7 @@ export const HomepageAuthorInfo = () => {
       <p className="text-center" id="authorInfo">
         {authorInfo}
       </p>
-      <button className="btn btn-go d-block btn-lg w-100">Edit</button>
+      {/* <button className="btn btn-go d-block btn-lg w-100">Edit</button> */}
     </div>
   );
 };

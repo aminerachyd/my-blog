@@ -17,5 +17,6 @@ app.use(fileMiddleware);
 app.use("/posts", require("./routes/posts"));
 app.use("/about", require("./routes/about"));
 app.use("/files", require("./routes/files"));
+app.use("/mail", require("./routes/mail"));
 
 exports.api = functions.https.onRequest(app);
