@@ -1,6 +1,6 @@
 import React from "react";
 import AboutMe from "./aboutme/AboutMe";
-import { Portfolio } from "./portfolio/Portfolio";
+import Portfolio from "./portfolio/Portfolio";
 
 export const About = () => {
   return (

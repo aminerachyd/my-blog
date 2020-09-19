@@ -169,7 +169,7 @@ router.post("/projects", uploadImage, async (req, res) => {
       project = {
         title: req.body.title,
         description: req.body.description,
-        link: req.body.link,
+        link: req.body.link ? req.body.link : "",
       };
     }
 

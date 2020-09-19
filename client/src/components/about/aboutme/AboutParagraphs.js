@@ -3,15 +3,15 @@ import { AboutParagraph } from "./AboutParagraph";
 import PropTypes from "prop-types";
 
 // Redux
-import { getAbout } from "../../../actions/aboutActions";
+import { getAboutParagraphs } from "../../../actions/aboutActions";
 import { connect } from "react-redux";
 
-const AboutParagraphs = ({ getAbout, about: { about, loading } }) => {
+const AboutParagraphs = ({ getAboutParagraphs, about: { about, loading } }) => {
   useEffect(() => {
-    getAbout();
-  }, [getAbout]);
+    getAboutParagraphs();
+  }, [getAboutParagraphs]);
 
-  return loading ? (
+  return loading || !about ? (
     <Fragment>Loading About</Fragment>
   ) : (
     <Fragment>
@@ -23,7 +23,7 @@ const AboutParagraphs = ({ getAbout, about: { about, loading } }) => {
 };
 
 AboutParagraphs.propTypes = {
-  getAbout: PropTypes.func.isRequired,
+  getAboutParagraphs: PropTypes.func.isRequired,
   about: PropTypes.object.isRequired,
 };
 
@@ -31,4 +31,6 @@ const mapStateToProps = (state) => ({
   about: state.about,
 });
 
-export default connect(mapStateToProps, { getAbout })(AboutParagraphs);
+export default connect(mapStateToProps, { getAboutParagraphs })(
+  AboutParagraphs
+);
