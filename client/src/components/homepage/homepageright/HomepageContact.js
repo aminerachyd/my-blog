@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import axios from "../../../axiosConfig";
+
 export const HomepageContact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -14,11 +16,16 @@ export const HomepageContact = () => {
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
 
-    // TODO Send form data
+    try {
+      const res = await axios.post("/mail", formData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
