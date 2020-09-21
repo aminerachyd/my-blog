@@ -15,8 +15,9 @@ const SingleBlogPost = ({
   },
   match,
 }) => {
+  id = match.params.id;
   useEffect(() => {
-    getPost(match.params.id);
+    getPost(id);
   }, [getPost]);
 
   return loading ? (
@@ -77,6 +78,12 @@ const SingleBlogPost = ({
                 </div>
               </div>
 
+              <Link
+                to={`/blog/blog-post/${id}/edit`}
+                className="btn btn-go d-block btn-lg mb-3"
+              >
+                Edit this post
+              </Link>
               <Link to="/blog" className="btn btn-go d-block btn-lg">
                 Go back to all posts
               </Link>

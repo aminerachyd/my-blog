@@ -8,11 +8,10 @@ import { Homepage } from "./components/homepage/Homepage";
 import { About } from "./components/about/About";
 import { Blog } from "./components/blog/Blog";
 import SingleBlogPost from "./components/singleblogpost/SingleBlogPost";
+import EditSingleBlogPost from "./components/singleblogpost/EditSingleBlogPost";
 
 import { Provider } from "react-redux";
 import store from "./store";
-
-import axios from "./axiosConfig";
 
 function App() {
   return (
@@ -23,6 +22,11 @@ function App() {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/blog/blog-post/:id" component={SingleBlogPost} />
+          <Route
+            exact
+            path="/blog/blog-post/:id/edit"
+            component={EditSingleBlogPost}
+          />
           <Route exact path="/about" component={About} />
         </Switch>
         <Footer />

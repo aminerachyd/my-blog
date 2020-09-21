@@ -32,17 +32,29 @@ export const Navbar = () => {
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item px-2">
-              <a href="#" className="nav-link">
+              <a
+                href="https://www.facebook.com/aminerachyd13"
+                target="_"
+                className="nav-link"
+              >
                 <i className="fab fa-facebook nav-icon"></i>
               </a>
             </li>
             <li className="nav-item px-2">
-              <a href="#" className="nav-link">
+              <a
+                href="https://www.instagram.com/amine_rachyd/"
+                target="_"
+                className="nav-link"
+              >
                 <i className="fab fa-instagram nav-icon"></i>
               </a>
             </li>
             <li className="nav-item px-2">
-              <a href="#" className="nav-link">
+              <a
+                href="https://twitter.com/RachydAmine"
+                target="_"
+                className="nav-link"
+              >
                 <i className="fab fa-twitter nav-icon"></i>
               </a>
             </li>
