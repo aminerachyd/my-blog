@@ -1,5 +1,11 @@
 import axios from "../axiosConfig";
-import { GET_POSTS, GET_POST, POST_ERROR, UPDATE_POST } from "./types";
+import {
+  GET_POSTS,
+  GET_POST,
+  POST_ERROR,
+  UPDATE_POST,
+  DELETE_POST,
+} from "./types";
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -47,6 +53,26 @@ export const updatePost = (id, updatedPost) => async (dispatch) => {
 
     dispatch({
       type: UPDATE_POST,
+      payload: updatedPost,
+    });
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
+      },
+    });
+  }
+};
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/posts/${id}`);
+
+    dispatch({
+      type: DELETE_POST,
+      payload: id,
     });
   } catch (error) {
     dispatch({

@@ -23,29 +23,30 @@ const SingleBlogPost = ({
   return loading ? (
     <Fragment>Post Loading</Fragment>
   ) : (
-    <div className="container mt-100">
+    <div className="container mt-100 blog-post">
       <div className="row">
-        <div className="row">
-          <div className="col">
-            <div className="container">
-              <h2 className="display-4">{title}</h2>
-              <div className="row">
-                <div className="col">
-                  <span className="h4 d-block">
-                    {" "}
-                    Created at :{" "}
-                    <Moment format="DD/MM/YYYY">{createdAt}</Moment>{" "}
-                  </span>
-                  <span className="h4 d-block">
-                    {" "}
-                    Last updated :{" "}
-                    <Moment format="DD/MM/YYYY">{lastUpdated}</Moment>{" "}
-                  </span>
-                </div>
-                <div className="col">
-                  <span className="blockquote-footer ml-auto d-block text-right">
-                    Tags :{" "}
-                    {tags.map((tag) => (
+        <div className="col">
+          <div className="container">
+            <h2 className="display-4">{title}</h2>
+            <div className="row">
+              <div className="col">
+                <span className="h4 d-block">
+                  {" "}
+                  Created at : <Moment format="DD/MM/YYYY">
+                    {createdAt}
+                  </Moment>{" "}
+                </span>
+                <span className="h4 d-block">
+                  {" "}
+                  Last updated :{" "}
+                  <Moment format="DD/MM/YYYY">{lastUpdated}</Moment>{" "}
+                </span>
+              </div>
+              <div className="col">
+                <span className="blockquote-footer ml-auto d-block text-right">
+                  Tags :{" "}
+                  {tags &&
+                    tags.map((tag) => (
                       <Fragment>
                         <a
                           href="#"
@@ -55,15 +56,15 @@ const SingleBlogPost = ({
                         </a>{" "}
                       </Fragment>
                     ))}
-                  </span>
-                </div>
+                </span>
               </div>
-              <hr />
+            </div>
+            <hr />
 
-              <div className="card my-3 blog-post">
-                <div className="card-body p-5">
-                  <div className="row mb-3 blog-paragraph">
-                    {/* TODO implement images
+            <div className="card my-3 blog-post">
+              <div className="card-body p-5">
+                <div className="row mb-3 blog-paragraph">
+                  {/* TODO implement images
                     <div className="col-lg-5 text-center">
                       <img
                         className=""
@@ -71,23 +72,22 @@ const SingleBlogPost = ({
                         alt=""
                       />
                     </div> */}
-                    <div className="col">
-                      <p className="card-text my-2">{body}</p>
-                    </div>
+                  <div className="col">
+                    <p className="card-text my-2">{body}</p>
                   </div>
                 </div>
               </div>
-
-              <Link
-                to={`/blog/blog-post/${id}/edit`}
-                className="btn btn-go d-block btn-lg mb-3"
-              >
-                Edit this post
-              </Link>
-              <Link to="/blog" className="btn btn-go d-block btn-lg">
-                Go back to all posts
-              </Link>
             </div>
+
+            <Link
+              to={`/blog/blog-post/${id}/edit`}
+              className="btn btn-go d-block btn-lg mb-3"
+            >
+              Edit this post
+            </Link>
+            <Link to="/blog" className="btn btn-go d-block btn-lg">
+              Go back to all posts
+            </Link>
           </div>
         </div>
       </div>
