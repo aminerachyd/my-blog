@@ -17,12 +17,6 @@ export const BlogPostPreview = ({
         >
           Read More
         </Link>
-        <Link
-          className="btn btn-go d-block btn-lg float-right"
-          to="/blog/blog-post"
-        >
-          Edit
-        </Link>
       </div>
       <footer className="card-footer p-3">
         <footer className="blockquote-footer">

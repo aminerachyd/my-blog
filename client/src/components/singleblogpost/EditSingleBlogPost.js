@@ -4,11 +4,12 @@ import PropTypes from "prop-types";
 import Moment from "react-moment";
 
 // Redux
-import { getPost } from "../../actions/postActions";
+import { getPost, updatePost } from "../../actions/postActions";
 import { connect } from "react-redux";
 
 const EditSingleBlogPost = ({
   getPost,
+  updatePost,
   post: {
     post: { id, title, body, createdAt, lastUpdated, tags },
     loading,
@@ -19,13 +20,19 @@ const EditSingleBlogPost = ({
 
   const [formData, setFormData] = useState({ title, body, tags });
 
-  useEffect(() => {
-    getPost(id);
-  }, [getPost]);
+  const onChange = (e) => {
+    e.preventDefault();
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  return loading ? (
-    <Fragment>Post loading</Fragment>
-  ) : (
+  const submitChange = (e) => {
+    e.preventDefault();
+    // TODO send formData
+    console.log(formData);
+    updatePost(id, formData);
+  };
+
+  return (
     <div className="container mt-100">
       <div className="row">
         <div className="row">
@@ -57,14 +64,16 @@ const EditSingleBlogPost = ({
                         <div className="form-group">
                           <label className="h4">Post title</label>
                           <input
+                            onChange={(e) => onChange(e)}
                             className="card-text my-2 form-control"
-                            name="body"
+                            name="title"
                             defaultValue={title}
                           />
                         </div>
                         <div className="form-group">
                           <label className="h4">Post body</label>
                           <textarea
+                            onChange={(e) => onChange(e)}
                             className="card-text my-2 form-control"
                             name="body"
                             defaultValue={body}
@@ -89,7 +98,12 @@ const EditSingleBlogPost = ({
                   </div>
                 </div>
               </div>
-              <a className="btn btn-go d-block btn-lg mb-3">Save changes</a>
+              <a
+                onClick={(e) => submitChange(e)}
+                className="btn btn-go d-block btn-lg mb-3"
+              >
+                Save changes
+              </a>
               <a to="/blog" className="btn btn-go d-block btn-lg">
                 Go back to posts
               </a>
@@ -103,6 +117,7 @@ const EditSingleBlogPost = ({
 
 EditSingleBlogPost.propTypes = {
   getPost: PropTypes.func.isRequired,
+  updatePost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
 
@@ -110,4 +125,6 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPost })(EditSingleBlogPost);
+export default connect(mapStateToProps, { getPost, updatePost })(
+  EditSingleBlogPost
+);
