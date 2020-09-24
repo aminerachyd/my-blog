@@ -4,6 +4,7 @@ import {
   POST_ERROR,
   UPDATE_POST,
   DELETE_POST,
+  ADD_POST,
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,11 @@ export default function (state = initialState, action) {
         ...state,
         error: payload,
         loading: false,
+      };
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [...state.posts, payload],
       };
     case UPDATE_POST:
     default:

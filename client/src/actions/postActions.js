@@ -5,6 +5,7 @@ import {
   POST_ERROR,
   UPDATE_POST,
   DELETE_POST,
+  ADD_POST,
 } from "./types";
 
 export const getPosts = () => async (dispatch) => {
@@ -66,6 +67,7 @@ export const updatePost = (id, updatedPost) => async (dispatch) => {
     });
   }
 };
+
 export const deletePost = (id) => async (dispatch) => {
   try {
     await axios.delete(`/posts/${id}`);
@@ -73,6 +75,25 @@ export const deletePost = (id) => async (dispatch) => {
     dispatch({
       type: DELETE_POST,
       payload: id,
+    });
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
+      },
+    });
+  }
+};
+export const addPost = (newPost) => async (dispatch) => {
+  try {
+    await axios.post(`/posts/`, newPost);
+
+    dispatch({
+      type: ADD_POST,
+      payload: newPost,
     });
   } catch (error) {
     dispatch({
