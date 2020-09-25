@@ -19,6 +19,10 @@ const NewSingleBlogPost = ({ addPost, post }) => {
       [e.target.name]: e.target.value,
     });
   };
+  const submitPost = (e) => {
+    e.preventDefault();
+    addPost(formData);
+  };
 
   return (
     <div className="container mt-100">
@@ -72,7 +76,10 @@ const NewSingleBlogPost = ({ addPost, post }) => {
                 </div>
               </div>
             </div>
-            <a className="btn btn-go d-block btn-lg mb-3">
+            <a
+              onClick={(e) => submitPost(e)}
+              className="btn btn-go d-block btn-lg mb-3"
+            >
               <i className="fas fa-plus"></i> Add New Post
             </a>
             <hr />
