@@ -1,4 +1,5 @@
-import React, { useState, useEffect, setState, Fragment, Link } from "react";
+import React, { useState, useEffect, setState, Fragment } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -114,9 +115,9 @@ const EditSingleBlogPost = ({
             >
               <i className="far fa-save"></i> Save changes
             </a>
-            <a href="/blog" className="btn btn-go d-block btn-lg">
+            <Link to="/blog" className="btn btn-go d-block btn-lg">
               <i className="fas fa-arrow-left"></i> Go back to posts
-            </a>{" "}
+            </Link>{" "}
             <hr />
             <a
               onClick={(e) => submitDelete(e)}

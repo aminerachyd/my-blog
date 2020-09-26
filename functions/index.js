@@ -1,11 +1,11 @@
 const functions = require("firebase-functions");
 const express = require("express");
+const cors = require("cors");
 
 global.XMLHttpRequest = require("xhr2");
 
 // Middleware for uploading files
 const fileMiddleware = require("express-multipart-file-parser");
-const cors = require("cors");
 
 const app = express();
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -83,9 +84,9 @@ const NewSingleBlogPost = ({ addPost, post }) => {
               <i className="fas fa-plus"></i> Add New Post
             </a>
             <hr />
-            <a className="btn btn-danger d-block btn-lg mb-3">
+            <Link to="/blog" className="btn btn-danger d-block btn-lg mb-3">
               <i className="fas fa-arrow-left"></i> Abort And Go Back To Posts
-            </a>{" "}
+            </Link>{" "}
           </div>
         </div>
       </div>
