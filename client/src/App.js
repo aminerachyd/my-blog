@@ -6,6 +6,7 @@ import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { Homepage } from "./components/homepage/Homepage";
 import { About } from "./components/about/About";
+import EditAbout from "./components/about/editaboutme/EditAbout";
 import { Blog } from "./components/blog/Blog";
 import SingleBlogPost from "./components/singleblogpost/SingleBlogPost";
 import EditSingleBlogPost from "./components/singleblogpost/EditSingleBlogPost";
@@ -30,6 +31,7 @@ function App() {
             component={EditSingleBlogPost}
           />
           <Route exact path="/about" component={About} />
+          <Route exact path="/about/edit" component={EditAbout} />
         </Switch>
         <Footer />
       </Router>

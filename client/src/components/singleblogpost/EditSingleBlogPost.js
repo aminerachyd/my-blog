@@ -40,7 +40,6 @@ const EditSingleBlogPost = ({
 
   const submitDelete = (e) => {
     e.preventDefault();
-    // TODO delete post
     deletePost(id);
   };
 
