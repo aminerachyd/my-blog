@@ -3,11 +3,15 @@ import AutosizeTextArea from "react-textarea-autosize";
 import PropTypes from "prop-types";
 
 // Redux
-import { updateAboutParagraph } from "../../../../actions/aboutActions";
+import {
+  updateAboutParagraph,
+  deleteAboutParagraph,
+} from "../../../../actions/aboutActions";
 import { connect } from "react-redux";
 
 const EditSingleParagraph = ({
   updateAboutParagraph,
+  deleteAboutParagraph,
   about,
   paragraph: { image, text, order, id },
 }) => {
@@ -38,13 +42,16 @@ const EditSingleParagraph = ({
 
   const submitChange = (e) => {
     e.preventDefault();
-    // TODO Send formData
-    console.log(formData);
     let dataToSend = new FormData();
     dataToSend.set("text", formData.text);
     dataToSend.set("order", formData.order);
     dataToSend.set("image", formData.image);
     updateAboutParagraph(id, dataToSend);
+  };
+
+  const deleteParagraph = (e) => {
+    e.preventDefault();
+    deleteAboutParagraph(id);
   };
 
   return (
@@ -82,6 +89,12 @@ const EditSingleParagraph = ({
             className="btn btn-go block btn-lg "
           >
             Save this paragraph
+          </button>{" "}
+          <button
+            onClick={(e) => deleteParagraph(e)}
+            className="btn btn-danger block btn-lg "
+          >
+            Delete this paragraph
           </button>
         </div>
       </div>
@@ -92,12 +105,14 @@ const EditSingleParagraph = ({
 EditSingleParagraph.propTypes = {
   paragraph: PropTypes.object.isRequired,
   updateAboutParagraph: PropTypes.func.isRequired,
+  deleteAboutParagraph: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   about: state.about,
 });
 
-export default connect(mapStateToProps, { updateAboutParagraph })(
-  EditSingleParagraph
-);
+export default connect(mapStateToProps, {
+  updateAboutParagraph,
+  deleteAboutParagraph,
+})(EditSingleParagraph);

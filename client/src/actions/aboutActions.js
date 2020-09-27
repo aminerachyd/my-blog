@@ -3,6 +3,8 @@ import {
   GET_ABOUT_PROJECTS,
   UPDATE_ABOUT_PARAGRAPH,
   UPDATE_ABOUT_PROJECT,
+  DELETE_ABOUT_PARAGRAPH,
+  DELETE_ABOUT_PROJECT,
   ABOUT_ERROR,
 } from "./types";
 import axios from "../axiosConfig";
@@ -56,6 +58,26 @@ export const updateAboutParagraph = (id, updatedParagraph) => async (
     dispatch({
       type: UPDATE_ABOUT_PARAGRAPH,
       payload: updatedParagraph,
+    });
+  } catch (error) {
+    dispatch({
+      type: ABOUT_ERROR,
+      payload: {
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
+      },
+    });
+  }
+};
+
+export const deleteAboutParagraph = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/about/paragraphs/${id}`);
+
+    dispatch({
+      type: DELETE_ABOUT_PARAGRAPH,
+      payload: id,
     });
   } catch (error) {
     dispatch({

@@ -3,6 +3,8 @@ import {
   GET_ABOUT_PROJECTS,
   UPDATE_ABOUT_PARAGRAPH,
   UPDATE_ABOUT_PROJECT,
+  DELETE_ABOUT_PARAGRAPH,
+  DELETE_ABOUT_PROJECT,
   ABOUT_ERROR,
 } from "../actions/types";
 
@@ -27,6 +29,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         projects: payload,
+        loading: false,
+      };
+    case DELETE_ABOUT_PARAGRAPH:
+      return {
+        ...state,
+        about: state.about.filter((paragraph) => paragraph.id !== payload),
         loading: false,
       };
     case ABOUT_ERROR:
