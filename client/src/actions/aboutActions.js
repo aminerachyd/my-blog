@@ -1,4 +1,10 @@
-import { GET_ABOUT_PARAGRAPHS, GET_ABOUT_PROJECTS, ABOUT_ERROR } from "./types";
+import {
+  GET_ABOUT_PARAGRAPHS,
+  GET_ABOUT_PROJECTS,
+  UPDATE_ABOUT_PARAGRAPH,
+  UPDATE_ABOUT_PROJECT,
+  ABOUT_ERROR,
+} from "./types";
 import axios from "../axiosConfig";
 
 export const getAboutParagraphs = () => async (dispatch) => {
@@ -28,6 +34,28 @@ export const getAboutProjects = () => async (dispatch) => {
     dispatch({
       type: GET_ABOUT_PROJECTS,
       payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ABOUT_ERROR,
+      payload: {
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
+      },
+    });
+  }
+};
+
+export const updateAboutParagraph = (id, updatedParagraph) => async (
+  dispatch
+) => {
+  try {
+    await axios.put(`/about/paragraphs/${id}`, updatedParagraph);
+
+    dispatch({
+      type: UPDATE_ABOUT_PARAGRAPH,
+      payload: updatedParagraph,
     });
   } catch (error) {
     dispatch({

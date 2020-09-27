@@ -1,6 +1,8 @@
 import {
   GET_ABOUT_PARAGRAPHS,
   GET_ABOUT_PROJECTS,
+  UPDATE_ABOUT_PARAGRAPH,
+  UPDATE_ABOUT_PROJECT,
   ABOUT_ERROR,
 } from "../actions/types";
 
@@ -33,6 +35,8 @@ export default function (state = initialState, action) {
         error: payload,
         loading: false,
       };
+    // TODO update state
+    case UPDATE_ABOUT_PARAGRAPH:
     default:
       return state;
   }

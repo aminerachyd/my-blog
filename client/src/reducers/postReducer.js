@@ -46,6 +46,7 @@ export default function (state = initialState, action) {
         ...state,
         posts: [...state.posts, payload],
       };
+    // TODO Update state
     case UPDATE_POST:
     default:
       return state;
