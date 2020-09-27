@@ -6,9 +6,9 @@ import { connect } from "react-redux";
 import {
   getAboutParagraphs,
   getAboutProjects,
-} from "../../../actions/aboutActions";
-import EditAboutMe from "./EditAboutMe";
-import EditPortfolio from "./EditPortfolio";
+} from "../../actions/aboutActions";
+import EditAboutMe from "./aboutme/editaboutme/EditAboutMe";
+import EditPortfolio from "./portfolio/editportfolio/EditPortfolio";
 
 const EditAbout = ({
   getAboutParagraphs,
@@ -20,12 +20,26 @@ const EditAbout = ({
     getAboutProjects();
   }, [getAboutParagraphs, getAboutProjects]);
 
-  // TODO Loading here
-  return (
-    <Fragment>
-      <EditAboutMe about={about} />
-      <EditPortfolio projects={projects} />
-    </Fragment>
+  return loading ? (
+    <h1>About loading</h1>
+  ) : (
+    <div className="container mt-100">
+      <div className="row">
+        <div className="col">
+          <div className="container">
+            <h2 className="display-4">Edit About Me</h2>
+            <hr />
+
+            <EditAboutMe about={about} />
+
+            <h2 className="display-4">Edit Projects</h2>
+            <hr />
+
+            <EditPortfolio projects={projects} />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

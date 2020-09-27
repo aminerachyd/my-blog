@@ -6,7 +6,7 @@ import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { Homepage } from "./components/homepage/Homepage";
 import { About } from "./components/about/About";
-import EditAbout from "./components/about/editaboutme/EditAbout";
+import EditAbout from "./components/about/EditAbout";
 import { Blog } from "./components/blog/Blog";
 import SingleBlogPost from "./components/singleblogpost/SingleBlogPost";
 import EditSingleBlogPost from "./components/singleblogpost/EditSingleBlogPost";
