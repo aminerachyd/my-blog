@@ -3,6 +3,8 @@ import {
   GET_ABOUT_PROJECTS,
   UPDATE_ABOUT_PARAGRAPH,
   UPDATE_ABOUT_PROJECT,
+  ADD_ABOUT_PARAGRAPH,
+  ADD_ABOUT_PROJECT,
   DELETE_ABOUT_PARAGRAPH,
   DELETE_ABOUT_PROJECT,
   ABOUT_ERROR,
@@ -30,6 +32,11 @@ export default function (state = initialState, action) {
         ...state,
         projects: payload,
         loading: false,
+      };
+    case ADD_ABOUT_PARAGRAPH:
+      return {
+        ...state,
+        about: [...state.about, payload],
       };
     case DELETE_ABOUT_PARAGRAPH:
       return {

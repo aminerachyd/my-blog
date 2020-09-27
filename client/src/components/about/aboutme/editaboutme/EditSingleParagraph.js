@@ -5,12 +5,14 @@ import PropTypes from "prop-types";
 // Redux
 import {
   updateAboutParagraph,
+  addAboutParagraph,
   deleteAboutParagraph,
 } from "../../../../actions/aboutActions";
 import { connect } from "react-redux";
 
 const EditSingleParagraph = ({
   updateAboutParagraph,
+  addAboutParagraph,
   deleteAboutParagraph,
   about,
   paragraph: { image, text, order, id },
@@ -46,7 +48,7 @@ const EditSingleParagraph = ({
     dataToSend.set("text", formData.text);
     dataToSend.set("order", formData.order);
     dataToSend.set("image", formData.image);
-    updateAboutParagraph(id, dataToSend);
+    id ? updateAboutParagraph(id, dataToSend) : addAboutParagraph(dataToSend);
   };
 
   const deleteParagraph = (e) => {
@@ -74,7 +76,11 @@ const EditSingleParagraph = ({
         <div className="col-lg-5 ">
           <div className="form-group">
             <label>Change its image</label>
-            <img className="ml-auto mr-auto" src={image} alt="" />
+            {image ? (
+              <img className="ml-auto mr-auto" src={image} alt="" />
+            ) : (
+              <h5>No Image Yet</h5>
+            )}
             <input
               onChange={(e) => onChange(e)}
               name="image"
@@ -86,13 +92,13 @@ const EditSingleParagraph = ({
         <div className="text-center">
           <button
             onClick={(e) => submitChange(e)}
-            className="btn btn-go block btn-lg "
+            className="btn btn-go block btn-lg mb-2"
           >
             Save this paragraph
           </button>{" "}
           <button
             onClick={(e) => deleteParagraph(e)}
-            className="btn btn-danger block btn-lg "
+            className="btn btn-danger block btn-lg mb-2"
           >
             Delete this paragraph
           </button>
@@ -105,6 +111,7 @@ const EditSingleParagraph = ({
 EditSingleParagraph.propTypes = {
   paragraph: PropTypes.object.isRequired,
   updateAboutParagraph: PropTypes.func.isRequired,
+  addAboutParagraph: PropTypes.func.isRequired,
   deleteAboutParagraph: PropTypes.func.isRequired,
 };
 
@@ -114,5 +121,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   updateAboutParagraph,
+  addAboutParagraph,
   deleteAboutParagraph,
 })(EditSingleParagraph);

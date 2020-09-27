@@ -3,6 +3,8 @@ import {
   GET_ABOUT_PROJECTS,
   UPDATE_ABOUT_PARAGRAPH,
   UPDATE_ABOUT_PROJECT,
+  ADD_ABOUT_PARAGRAPH,
+  ADD_ABOUT_PROJECT,
   DELETE_ABOUT_PARAGRAPH,
   DELETE_ABOUT_PROJECT,
   ABOUT_ERROR,
@@ -58,6 +60,24 @@ export const updateAboutParagraph = (id, updatedParagraph) => async (
     dispatch({
       type: UPDATE_ABOUT_PARAGRAPH,
       payload: updatedParagraph,
+    });
+  } catch (error) {
+    dispatch({
+      type: ABOUT_ERROR,
+      payload: {
+        //   TODO fix error system msg: "Server Error", status: 500,
+      },
+    });
+  }
+};
+
+export const addAboutParagraph = (newParagraph) => async (dispatch) => {
+  try {
+    await axios.post(`/about/paragraphs`, newParagraph);
+
+    dispatch({
+      type: ADD_ABOUT_PARAGRAPH,
+      payload: newParagraph,
     });
   } catch (error) {
     dispatch({
