@@ -39,6 +39,8 @@ const EditParagraphs = ({ paragraphs }) => {
   );
 };
 
-EditParagraphs.propTypes = {};
+EditParagraphs.propTypes = {
+  paragraphs: PropTypes.object.isRequired,
+};
 
 export default EditParagraphs;

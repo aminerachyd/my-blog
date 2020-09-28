@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import AutoresizeTextarea from "react-textarea-autosize";
 import PropTypes from "prop-types";
 
@@ -14,12 +14,38 @@ const EditSingleProject = ({
   project: { id, image, title, link, description },
 }) => {
   // TODO Make edit projet
+  const [formData, setFormData] = useState({
+    image,
+    title,
+    link,
+    description,
+  });
+
+  const onChange = (e) => {
+    e.preventDefault();
+    switch (e.target.name) {
+      case "image":
+        setFormData({
+          ...formData,
+          image: e.target.files[0],
+        });
+        break;
+      default:
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value,
+        });
+        break;
+    }
+  };
+
   const submitChange = (e) => {
     e.preventDefault();
     let dataToSend = new FormData();
-    // dataToSend.set("text", formData.text);
-    // dataToSend.set("order", formData.order);
-    // dataToSend.set("image", formData.image);
+    dataToSend.set("title", formData.title);
+    dataToSend.set("image", formData.image);
+    dataToSend.set("link", formData.link);
+    dataToSend.set("description", formData.description);
     id ? updateAboutProject(id, dataToSend) : addAboutProject(dataToSend);
   };
 
@@ -39,11 +65,17 @@ const EditSingleProject = ({
         <div className="card-body">
           <div className="form-group">
             <label>Change The Image</label>
-            <input type="file" name="image" className="form-control-file" />
+            <input
+              onChange={(e) => onChange(e)}
+              type="file"
+              name="image"
+              className="form-control-file"
+            />
           </div>
           <div className="form-group">
             <label>Change The Title</label>
             <input
+              onChange={(e) => onChange(e)}
               type="text"
               name="title"
               defaultValue={title}
@@ -54,16 +86,18 @@ const EditSingleProject = ({
           <div className="form-group">
             <label>Change The Link</label>
             <input
+              onChange={(e) => onChange(e)}
               type="text"
-              name="title"
+              name="link"
               defaultValue={link}
-              placeholder="Project Title"
+              placeholder="Project Link"
               className="form-control"
             />
           </div>{" "}
           <div className="form-group">
             <label>Change The Description</label>
             <AutoresizeTextarea
+              onChange={(e) => onChange(e)}
               type="text"
               name="description"
               defaultValue={description}
