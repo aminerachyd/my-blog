@@ -31,26 +31,6 @@ export const getAboutParagraphs = () => async (dispatch) => {
   }
 };
 
-export const getAboutProjects = () => async (dispatch) => {
-  try {
-    const res = await axios.get("/about/projects");
-
-    dispatch({
-      type: GET_ABOUT_PROJECTS,
-      payload: res.data,
-    });
-  } catch (error) {
-    dispatch({
-      type: ABOUT_ERROR,
-      payload: {
-        //   TODO fix error system
-        msg: "Server Error",
-        status: 500,
-      },
-    });
-  }
-};
-
 export const updateAboutParagraph = (id, updatedParagraph) => async (
   dispatch
 ) => {
@@ -110,3 +90,31 @@ export const deleteAboutParagraph = (id) => async (dispatch) => {
     });
   }
 };
+
+export const getAboutProjects = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/about/projects");
+
+    dispatch({
+      type: GET_ABOUT_PROJECTS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ABOUT_ERROR,
+      payload: {
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
+      },
+    });
+  }
+};
+
+export const updateAboutProject = (id, updatedProject) => async (
+  dispatch
+) => {};
+
+export const addAboutProject = (newProject) => async (dispatch) => {};
+
+export const deleteAboutProject = (id) => async (dispatch) => {};

@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // Redux
@@ -27,12 +28,15 @@ const EditAbout = ({
       <div className="row">
         <div className="col">
           <div className="container">
+            <Link to={`/about`} className="btn btn-go d-block btn-lg mb-5">
+              Go Back To About
+            </Link>
             <h2 className="display-4">Edit About Me</h2>
             <hr />
 
             <EditAboutMe about={about} />
 
-            <h2 className="display-4">Edit Projects</h2>
+            <h2 className="display-4">Edit Portfolio</h2>
             <hr />
 
             <EditPortfolio projects={projects} />
