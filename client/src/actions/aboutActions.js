@@ -111,10 +111,56 @@ export const getAboutProjects = () => async (dispatch) => {
   }
 };
 
-export const updateAboutProject = (id, updatedProject) => async (
-  dispatch
-) => {};
+export const updateAboutProject = (id, updatedProject) => async (dispatch) => {
+  try {
+    await axios.put(`/about/projects/${id}`, updatedProject);
 
-export const addAboutProject = (newProject) => async (dispatch) => {};
+    dispatch({
+      type: UPDATE_ABOUT_PROJECT,
+      payload: updatedProject,
+    });
+  } catch (error) {
+    dispatch({
+      type: ABOUT_ERROR,
+      payload: {
+        //   TODO fix error system msg: "Server Error", status: 500,
+      },
+    });
+  }
+};
 
-export const deleteAboutProject = (id) => async (dispatch) => {};
+export const addAboutProject = (newProject) => async (dispatch) => {
+  try {
+    await axios.post(`/about/projects/`, newProject);
+
+    dispatch({
+      type: ADD_ABOUT_PROJECT,
+      payload: newProject,
+    });
+  } catch (error) {
+    dispatch({
+      type: ABOUT_ERROR,
+      payload: {
+        //   TODO fix error system msg: "Server Error", status: 500,
+      },
+    });
+  }
+};
+
+export const deleteAboutProject = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/about/projects/${id}`);
+
+    dispatch({
+      type: DELETE_ABOUT_PROJECT,
+      payload: id,
+    });
+  } catch (error) {
+    dispatch({
+      type: ABOUT_ERROR,
+      payload: {
+        //   TODO fix error system msg: "Server Error", status: 500,
+      },
+    });
+  }
+};
