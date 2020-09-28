@@ -44,6 +44,17 @@ export default function (state = initialState, action) {
         about: state.about.filter((paragraph) => paragraph.id !== payload),
         loading: false,
       };
+    case ADD_ABOUT_PROJECT:
+      return {
+        ...state,
+        projects: [...state.projects, payload],
+      };
+    case DELETE_ABOUT_PROJECT:
+      return {
+        ...state,
+        projects: state.projects.filter((project) => project.id !== payload),
+        loading: false,
+      };
     case ABOUT_ERROR:
       return {
         ...state,
@@ -52,6 +63,7 @@ export default function (state = initialState, action) {
       };
     // TODO update state
     case UPDATE_ABOUT_PARAGRAPH:
+    case UPDATE_ABOUT_PROJECT:
     default:
       return state;
   }
