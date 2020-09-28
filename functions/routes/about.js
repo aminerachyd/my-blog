@@ -186,7 +186,7 @@ router.post("/projects", uploadImage, async (req, res) => {
 // @desc   Updates a project based on its ID
 router.put("/projects/:id", uploadImage, async (req, res) => {
   try {
-    const docSnapshot = projectsCollection.doc(req.params.id).get();
+    const docSnapshot = await projectsCollection.doc(req.params.id).get();
     if (docSnapshot.data()) {
       let projectUpdate;
 

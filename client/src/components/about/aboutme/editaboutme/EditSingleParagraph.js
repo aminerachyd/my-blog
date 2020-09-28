@@ -110,6 +110,7 @@ const EditSingleParagraph = ({
 
 EditSingleParagraph.propTypes = {
   paragraph: PropTypes.object.isRequired,
+  about: PropTypes.object.isRequired,
   updateAboutParagraph: PropTypes.func.isRequired,
   addAboutParagraph: PropTypes.func.isRequired,
   deleteAboutParagraph: PropTypes.func.isRequired,

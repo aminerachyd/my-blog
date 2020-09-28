@@ -8,10 +8,13 @@ import {
   updateAboutProject,
   addAboutProject,
   deleteAboutProject,
-  about,
 } from "../../../../actions/aboutActions";
 
 const EditSingleProject = ({
+  updateAboutProject,
+  addAboutProject,
+  deleteAboutProject,
+  about,
   project: { id, image, title, link, description },
 }) => {
   // TODO Make edit projet
@@ -129,6 +132,10 @@ const EditSingleProject = ({
 
 EditSingleProject.propTypes = {
   project: PropTypes.object.isRequired,
+  about: PropTypes.object.isRequired,
+  addAboutProject: PropTypes.func.isRequired,
+  updateAboutProject: PropTypes.func.isRequired,
+  deleteAboutProject: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
