@@ -8,6 +8,7 @@ import {
   updateAboutProject,
   addAboutProject,
   deleteAboutProject,
+  about,
 } from "../../../../actions/aboutActions";
 
 const EditSingleProject = ({
@@ -51,6 +52,7 @@ const EditSingleProject = ({
 
   const deleteProject = (e) => {
     e.preventDefault();
+    deleteAboutProject(id);
   };
 
   return (
