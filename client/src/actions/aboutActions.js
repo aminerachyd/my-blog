@@ -35,17 +35,24 @@ export const updateAboutParagraph = (id, updatedParagraph) => async (
   dispatch
 ) => {
   try {
-    await axios.put(`/about/paragraphs/${id}`, updatedParagraph);
+    const res = await axios.put(`/about/paragraphs/${id}`, updatedParagraph);
+
+    const { order, text, image } = res.data.paragraph;
+
+    console.log(res.data);
 
     dispatch({
       type: UPDATE_ABOUT_PARAGRAPH,
-      payload: updatedParagraph,
+      payload: { id, order, text, image },
     });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: ABOUT_ERROR,
       payload: {
-        //   TODO fix error system msg: "Server Error", status: 500,
+        //   TODO fix error system
+        msg: error,
+        status: 500,
       },
     });
   }
@@ -113,11 +120,12 @@ export const getAboutProjects = () => async (dispatch) => {
 
 export const updateAboutProject = (id, updatedProject) => async (dispatch) => {
   try {
-    await axios.put(`/about/projects/${id}`, updatedProject);
+    const res = await axios.put(`/about/projects/${id}`, updatedProject);
 
+    // TODO Fix update
     dispatch({
       type: UPDATE_ABOUT_PROJECT,
-      payload: updatedProject,
+      payload: res.data(),
     });
   } catch (error) {
     dispatch({

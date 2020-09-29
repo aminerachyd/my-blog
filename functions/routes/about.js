@@ -91,7 +91,12 @@ router.put("/paragraphs/:id", uploadImage, async (req, res) => {
 
       await paragraphsCollection.doc(req.params.id).update(paragraphUpdate);
 
-      res.send(`Paragraph ${req.params.id} Updated`);
+      const update = await paragraphsCollection.doc(req.params.id).get();
+
+      res.json({
+        msg: `Paragraph ${req.params.id} Updated`,
+        paragraph: update.data(),
+      });
     } else {
       res.status(400).send("Paragraph not found");
       return;
@@ -207,7 +212,12 @@ router.put("/projects/:id", uploadImage, async (req, res) => {
 
       await projectsCollection.doc(req.params.id).update(projectUpdate);
 
-      res.send(`Project ${req.params.id} Updated`);
+      const update = await projectsCollection.doc(req.params.id).get();
+
+      res.json({
+        msg: `Project ${req.params.id} Updated`,
+        project: update.data(),
+      });
     } else {
       res.status(400).send("Project not found");
       return;

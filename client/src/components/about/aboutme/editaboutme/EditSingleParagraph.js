@@ -49,6 +49,12 @@ const EditSingleParagraph = ({
     dataToSend.set("order", formData.order);
     dataToSend.set("image", formData.image);
     id ? updateAboutParagraph(id, dataToSend) : addAboutParagraph(dataToSend);
+
+    //TODO SET STATE HERE
+    setFormData({
+      ...formData,
+      image: "test",
+    });
   };
 
   const deleteParagraph = (e) => {

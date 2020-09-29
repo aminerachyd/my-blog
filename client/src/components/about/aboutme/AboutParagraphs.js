@@ -6,16 +6,19 @@ import PropTypes from "prop-types";
 import { getAboutParagraphs } from "../../../actions/aboutActions";
 import { connect } from "react-redux";
 
-const AboutParagraphs = ({ getAboutParagraphs, about: { about, loading } }) => {
+const AboutParagraphs = ({
+  getAboutParagraphs,
+  about: { paragraphs, loading },
+}) => {
   useEffect(() => {
     getAboutParagraphs();
   }, [getAboutParagraphs]);
 
-  return loading || !about ? (
+  return loading || !paragraphs ? (
     <Fragment>Loading About</Fragment>
   ) : (
     <Fragment>
-      {about.map((paragaph) => (
+      {paragraphs.map((paragaph) => (
         <AboutParagraph key={paragaph.id} paragraph={paragaph} />
       ))}
     </Fragment>

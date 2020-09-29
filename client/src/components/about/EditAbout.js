@@ -14,7 +14,7 @@ import EditPortfolio from "./portfolio/editportfolio/EditPortfolio";
 const EditAbout = ({
   getAboutParagraphs,
   getAboutProjects,
-  about: { about, projects, loading },
+  about: { paragraphs, projects, loading },
 }) => {
   useEffect(() => {
     getAboutParagraphs();
@@ -34,7 +34,7 @@ const EditAbout = ({
             <h2 className="display-4">Edit About Me</h2>
             <hr />
 
-            <EditAboutMe about={about} />
+            <EditAboutMe paragraphs={paragraphs} />
 
             <h2 className="display-4">Edit Portfolio</h2>
             <hr />

@@ -11,7 +11,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  about: [],
+  paragraphs: [],
   projects: [],
   loading: true,
   error: {},
@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
     case GET_ABOUT_PARAGRAPHS:
       return {
         ...state,
-        about: payload,
+        paragraphs: payload,
         loading: false,
       };
     case GET_ABOUT_PROJECTS:
@@ -36,12 +36,24 @@ export default function (state = initialState, action) {
     case ADD_ABOUT_PARAGRAPH:
       return {
         ...state,
-        about: [...state.about, payload],
+        paragraphs: [...state.paragraphs, payload],
+      };
+    case UPDATE_ABOUT_PARAGRAPH:
+      const { id, image, text, order } = payload;
+
+      return {
+        ...state,
+        paragraphs: state.paragraphs.map((paragraph) =>
+          paragraph.id === id ? { ...paragraph, image, text, order } : paragraph
+        ),
+        loading: false,
       };
     case DELETE_ABOUT_PARAGRAPH:
       return {
         ...state,
-        about: state.about.filter((paragraph) => paragraph.id !== payload),
+        paragraphs: state.paragraphs.filter(
+          (paragraph) => paragraph.id !== payload
+        ),
         loading: false,
       };
     case ADD_ABOUT_PROJECT:
@@ -55,6 +67,7 @@ export default function (state = initialState, action) {
         projects: state.projects.filter((project) => project.id !== payload),
         loading: false,
       };
+    case UPDATE_ABOUT_PROJECT:
     case ABOUT_ERROR:
       return {
         ...state,
@@ -62,8 +75,6 @@ export default function (state = initialState, action) {
         loading: false,
       };
     // TODO update state
-    case UPDATE_ABOUT_PARAGRAPH:
-    case UPDATE_ABOUT_PROJECT:
     default:
       return state;
   }
