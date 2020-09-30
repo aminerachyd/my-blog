@@ -18,6 +18,7 @@ const EditSingleParagraph = ({
   paragraph: { image, text, order, id },
 }) => {
   const [formData, setFormData] = useState({
+    id,
     text,
     image,
     order,
@@ -48,25 +49,28 @@ const EditSingleParagraph = ({
     dataToSend.set("order", formData.order);
     dataToSend.set("image", imageToSend);
 
-    //TODO SET STATE HERE
-
     if (id) {
       const res = await updateAboutParagraph(id, dataToSend);
-      console.log(res);
 
       setFormData({
         ...formData,
         image: res.image,
       });
     } else {
-      // TODO change image here
-      addAboutParagraph(dataToSend);
+      const res = await addAboutParagraph(dataToSend);
+
+      setFormData({
+        ...formData,
+        id: res.id,
+        image: res.image,
+      });
     }
   };
 
+  // TODO Gotta remove item here
   const deleteParagraph = (e) => {
     e.preventDefault();
-    deleteAboutParagraph(id);
+    deleteAboutParagraph(formData.id);
   };
 
   return (
@@ -89,7 +93,7 @@ const EditSingleParagraph = ({
         <div className="col-lg-5 ">
           <div className="form-group">
             <label>Change its image</label>
-            {image ? (
+            {formData.image ? (
               <img className="ml-auto mr-auto" src={formData.image} alt="" />
             ) : (
               <h5>No Image Yet</h5>

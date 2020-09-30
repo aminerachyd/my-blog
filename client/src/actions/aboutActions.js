@@ -60,12 +60,16 @@ export const updateAboutParagraph = (id, updatedParagraph) => async (
 
 export const addAboutParagraph = (newParagraph) => async (dispatch) => {
   try {
-    await axios.post(`/about/paragraphs`, newParagraph);
+    const res = await axios.post(`/about/paragraphs`, newParagraph);
+
+    const { id, order, text, image } = res.data.paragraph;
 
     dispatch({
       type: ADD_ABOUT_PARAGRAPH,
-      payload: newParagraph,
+      payload: { id, order, text, image },
     });
+
+    return { id, order, text, image };
   } catch (error) {
     dispatch({
       type: ABOUT_ERROR,

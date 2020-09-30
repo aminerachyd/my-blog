@@ -59,9 +59,14 @@ router.post("/paragraphs", uploadImage, async (req, res) => {
       };
     }
 
-    await paragraphsCollection.add(paragraph);
+    const docRef = await paragraphsCollection.add(paragraph);
 
-    res.send("New Paragraph Added");
+    const newParagraph = await paragraphsCollection.doc(docRef.id).get();
+
+    res.json({
+      msg: `Paragraph ${docRef.id} Added`,
+      paragraph: { ...newParagraph.data(), id: docRef.id },
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send("Server Error");
