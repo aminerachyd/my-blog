@@ -17,7 +17,6 @@ const EditSingleProject = ({
   about,
   project: { id, image, title, link, description },
 }) => {
-  // TODO Make edit projet
   const [formData, setFormData] = useState({
     image,
     title,

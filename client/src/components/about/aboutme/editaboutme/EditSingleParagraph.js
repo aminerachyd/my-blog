@@ -23,13 +23,12 @@ const EditSingleParagraph = ({
     order,
   });
 
+  let imageToSend;
+
   const onChange = (e) => {
     switch (e.target.name) {
       case "image":
-        setFormData({
-          ...formData,
-          image: e.target.files[0],
-        });
+        imageToSend = e.target.files[0];
         break;
       case "text":
         setFormData({
@@ -42,25 +41,27 @@ const EditSingleParagraph = ({
     }
   };
 
-  const submitChange = (e) => {
+  const submitChange = async (e) => {
     e.preventDefault();
     let dataToSend = new FormData();
     dataToSend.set("text", formData.text);
     dataToSend.set("order", formData.order);
-    dataToSend.set("image", formData.image);
+    dataToSend.set("image", imageToSend);
 
     //TODO SET STATE HERE
 
-    let newImage;
+    if (id) {
+      const res = await updateAboutParagraph(id, dataToSend);
+      console.log(res);
 
-    id
-      ? (image = updateAboutParagraph(id, dataToSend))
-      : addAboutParagraph(dataToSend);
-
-    setFormData({
-      ...formData,
-      image: newImage,
-    });
+      setFormData({
+        ...formData,
+        image: res.image,
+      });
+    } else {
+      // TODO change image here
+      addAboutParagraph(dataToSend);
+    }
   };
 
   const deleteParagraph = (e) => {
