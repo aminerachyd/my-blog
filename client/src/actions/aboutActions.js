@@ -135,7 +135,9 @@ export const updateAboutProject = (id, updatedProject) => async (dispatch) => {
     dispatch({
       type: ABOUT_ERROR,
       payload: {
-        //   TODO fix error system msg: "Server Error", status: 500,
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
       },
     });
   }
@@ -153,7 +155,9 @@ export const addAboutProject = (newProject) => async (dispatch) => {
     dispatch({
       type: ABOUT_ERROR,
       payload: {
-        //   TODO fix error system msg: "Server Error", status: 500,
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
       },
     });
   }
@@ -171,7 +175,9 @@ export const deleteAboutProject = (id) => async (dispatch) => {
     dispatch({
       type: ABOUT_ERROR,
       payload: {
-        //   TODO fix error system msg: "Server Error", status: 500,
+        //   TODO fix error system
+        msg: "Server Error",
+        status: 500,
       },
     });
   }

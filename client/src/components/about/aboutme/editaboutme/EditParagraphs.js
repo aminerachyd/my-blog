@@ -24,10 +24,24 @@ const EditParagraphs = ({ paragraphs }) => {
       });
   };
 
+  const deleteParagraphParent = (id) => {
+    setParagraphsState({
+      ...paragraphsState,
+      isAdded: false, // FIXME might be buggy
+      paragraphs: paragraphsState.paragraphs.filter(
+        (paragraph) => paragraph.id !== id
+      ),
+    });
+  };
+
   return (
     <Fragment>
       {paragraphsState.paragraphs.map((paragraph) => (
-        <EditSingleParagraph key={paragraph.id} paragraph={paragraph} />
+        <EditSingleParagraph
+          key={paragraph.id}
+          paragraph={paragraph}
+          deleteParagraphParent={deleteParagraphParent}
+        />
       ))}{" "}
       <button
         onClick={(e) => addParagraph(e)}

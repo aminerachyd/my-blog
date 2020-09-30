@@ -15,6 +15,7 @@ const EditSingleParagraph = ({
   addAboutParagraph,
   deleteAboutParagraph,
   about,
+  deleteParagraphParent,
   paragraph: { image, text, order, id },
 }) => {
   const [formData, setFormData] = useState({
@@ -71,6 +72,7 @@ const EditSingleParagraph = ({
   const deleteParagraph = (e) => {
     e.preventDefault();
     deleteAboutParagraph(formData.id);
+    deleteParagraphParent(formData.id);
   };
 
   return (
@@ -128,6 +130,7 @@ const EditSingleParagraph = ({
 EditSingleParagraph.propTypes = {
   paragraph: PropTypes.object.isRequired,
   about: PropTypes.object.isRequired,
+  deleteParagraphParent: PropTypes.func.isRequired,
   updateAboutParagraph: PropTypes.func.isRequired,
   addAboutParagraph: PropTypes.func.isRequired,
   deleteAboutParagraph: PropTypes.func.isRequired,
