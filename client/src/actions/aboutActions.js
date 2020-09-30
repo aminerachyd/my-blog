@@ -39,12 +39,12 @@ export const updateAboutParagraph = (id, updatedParagraph) => async (
 
     const { order, text, image } = res.data.paragraph;
 
-    console.log(res.data);
-
     dispatch({
       type: UPDATE_ABOUT_PARAGRAPH,
       payload: { id, order, text, image },
     });
+
+    return { id, order, text, image };
   } catch (error) {
     console.log(error);
     dispatch({

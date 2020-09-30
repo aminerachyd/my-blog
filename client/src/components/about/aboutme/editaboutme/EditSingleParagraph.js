@@ -48,12 +48,18 @@ const EditSingleParagraph = ({
     dataToSend.set("text", formData.text);
     dataToSend.set("order", formData.order);
     dataToSend.set("image", formData.image);
-    id ? updateAboutParagraph(id, dataToSend) : addAboutParagraph(dataToSend);
 
     //TODO SET STATE HERE
+
+    let newImage;
+
+    id
+      ? (image = updateAboutParagraph(id, dataToSend))
+      : addAboutParagraph(dataToSend);
+
     setFormData({
       ...formData,
-      image: "test",
+      image: newImage,
     });
   };
 
@@ -83,7 +89,7 @@ const EditSingleParagraph = ({
           <div className="form-group">
             <label>Change its image</label>
             {image ? (
-              <img className="ml-auto mr-auto" src={image} alt="" />
+              <img className="ml-auto mr-auto" src={formData.image} alt="" />
             ) : (
               <h5>No Image Yet</h5>
             )}
