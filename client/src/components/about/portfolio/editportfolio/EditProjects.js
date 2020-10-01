@@ -20,15 +20,39 @@ const EditProjects = ({ projects }) => {
           description: "",
           link: "",
           image: "",
+          id: "1",
         },
       ],
     });
   };
 
+  const deleteProjectParent = (id) => {
+    if (
+      projects === projectsState.projects.filter((project) => project.id !== id)
+    )
+      setProjectsState({
+        ...projectsState,
+        isAdded: false,
+        projects: projectsState.projects.filter(
+          (project) => project.id !== "1"
+        ),
+      });
+    else
+      setProjectsState({
+        ...projectsState,
+        isAdded: false,
+        projects: projectsState.projects.filter((project) => project.id !== id),
+      });
+  };
+
   return (
     <Fragment>
       {projectsState.projects.map((project) => (
-        <EditSingleProject key={project.id} project={project} />
+        <EditSingleProject
+          key={project.id}
+          project={project}
+          deleteProjectParent={deleteProjectParent}
+        />
       ))}
       <button
         onClick={(e) => addProject(e)}

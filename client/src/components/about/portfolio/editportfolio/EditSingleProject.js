@@ -15,23 +15,24 @@ const EditSingleProject = ({
   addAboutProject,
   deleteAboutProject,
   about,
+  deleteProjectParent,
   project: { id, image, title, link, description },
 }) => {
   const [formData, setFormData] = useState({
+    id,
     image,
     title,
     link,
     description,
   });
 
+  let imageToSend;
+
   const onChange = (e) => {
     e.preventDefault();
     switch (e.target.name) {
       case "image":
-        setFormData({
-          ...formData,
-          image: e.target.files[0],
-        });
+        imageToSend = e.target.files[0];
         break;
       default:
         setFormData({
@@ -42,27 +43,50 @@ const EditSingleProject = ({
     }
   };
 
-  const submitChange = (e) => {
+  const submitChange = async (e) => {
     e.preventDefault();
     let dataToSend = new FormData();
     dataToSend.set("title", formData.title);
-    dataToSend.set("image", formData.image);
+    dataToSend.set("image", imageToSend);
     dataToSend.set("link", formData.link);
     dataToSend.set("description", formData.description);
-    id ? updateAboutProject(id, dataToSend) : addAboutProject(dataToSend);
+    // TODO Modify returns in action/backend
+    if (id !== "1") {
+      const res = await updateAboutProject(id, dataToSend);
+
+      setFormData({
+        ...formData,
+        image: res.image,
+      });
+    } else {
+      const res = await addAboutProject(dataToSend);
+
+      setFormData({
+        ...formData,
+        image: res.image,
+        id: res.id,
+      });
+    }
   };
 
   const deleteProject = (e) => {
     e.preventDefault();
-    deleteAboutProject(id);
+    deleteAboutProject(formData.id);
+    deleteProjectParent(formData.id);
   };
 
   return (
     <Fragment>
-      <div className="card">
+      <h4>A project</h4>
+      <hr />
+      <div className="card mb-2">
         <div className="row blog-paragraph"></div>
-        {image ? (
-          <img className="card-img-top img-fluid" src={image} alt="" />
+        {formData.image ? (
+          <img
+            className="ml-auto mr-auto img-fluid"
+            src={formData.image}
+            alt=""
+          />
         ) : (
           <h4 className="p-3">No Image Yet For This Project</h4>
         )}
@@ -82,7 +106,7 @@ const EditSingleProject = ({
               onChange={(e) => onChange(e)}
               type="text"
               name="title"
-              defaultValue={title}
+              defaultValue={formData.title}
               placeholder="Project Title"
               className="form-control"
             />
@@ -93,7 +117,7 @@ const EditSingleProject = ({
               onChange={(e) => onChange(e)}
               type="text"
               name="link"
-              defaultValue={link}
+              defaultValue={formData.link}
               placeholder="Project Link"
               className="form-control"
             />
@@ -104,7 +128,7 @@ const EditSingleProject = ({
               onChange={(e) => onChange(e)}
               type="text"
               name="description"
-              defaultValue={description}
+              defaultValue={formData.description}
               placeholder="Project Description"
               className="form-control"
             />
@@ -132,6 +156,7 @@ const EditSingleProject = ({
 EditSingleProject.propTypes = {
   project: PropTypes.object.isRequired,
   about: PropTypes.object.isRequired,
+  deleteProjectParent: PropTypes.func.isRequired,
   addAboutProject: PropTypes.func.isRequired,
   updateAboutProject: PropTypes.func.isRequired,
   deleteAboutProject: PropTypes.func.isRequired,

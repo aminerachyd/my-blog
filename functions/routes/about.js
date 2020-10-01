@@ -183,9 +183,14 @@ router.post("/projects", uploadImage, async (req, res) => {
       };
     }
 
-    await projectsCollection.add(project);
+    const docRef = await projectsCollection.add(project);
 
-    res.send("New Project Added");
+    const newProjet = await projectsCollection.doc(docRef.id).get();
+
+    res.json({
+      msg: `Project ${docRef.id} Added`,
+      project: { ...newProjet.data(), id: docRef.id },
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send("Server Error");
