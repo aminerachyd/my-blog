@@ -19,19 +19,32 @@ const EditParagraphs = ({ paragraphs }) => {
             text: "",
             image: "",
             order: "1",
+            id: "1",
           },
         ],
       });
   };
 
   const deleteParagraphParent = (id) => {
-    setParagraphsState({
-      ...paragraphsState,
-      isAdded: false, // FIXME might be buggy
-      paragraphs: paragraphsState.paragraphs.filter(
-        (paragraph) => paragraph.id !== id
-      ),
-    });
+    if (
+      paragraphs ===
+      paragraphsState.paragraphs.filter((paragraph) => paragraph.id !== id)
+    )
+      setParagraphsState({
+        ...paragraphsState,
+        isAdded: false, // FIXME might be buggy
+        paragraphs: paragraphsState.paragraphs.filter(
+          (paragraph) => paragraph.id !== "1"
+        ),
+      });
+    else
+      setParagraphsState({
+        ...paragraphsState,
+        isAdded: false, // FIXME might be buggy
+        paragraphs: paragraphsState.paragraphs.filter(
+          (paragraph) => paragraph.id !== id
+        ),
+      });
   };
 
   return (

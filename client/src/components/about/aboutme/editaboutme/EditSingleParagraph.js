@@ -50,7 +50,7 @@ const EditSingleParagraph = ({
     dataToSend.set("order", formData.order);
     dataToSend.set("image", imageToSend);
 
-    if (id) {
+    if (id !== "1") {
       const res = await updateAboutParagraph(id, dataToSend);
 
       setFormData({
