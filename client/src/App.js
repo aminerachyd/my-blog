@@ -11,7 +11,9 @@ import { Blog } from "./components/blog/Blog";
 import SingleBlogPost from "./components/singleblogpost/SingleBlogPost";
 import EditSingleBlogPost from "./components/singleblogpost/EditSingleBlogPost";
 import NewSingleBlogPost from "./components/singleblogpost/NewSingleBlogPost";
+import Login from "./components/login/Login";
 
+// Redux
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -22,6 +24,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Homepage} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/blog/new-post" component={NewSingleBlogPost} />
           <Route exact path="/blog/blog-post/:id" component={SingleBlogPost} />
