@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PrivateComponent from "../routing/PrivateComponent";
 import AboutMe from "./aboutme/AboutMe";
 import Portfolio from "./portfolio/Portfolio";
 
@@ -9,9 +10,14 @@ export const About = () => {
       <div className="row">
         <div className="col">
           <div className="container">
-            <Link to={`/about/edit`} className="btn btn-go d-block btn-lg mb-5">
-              Edit About
-            </Link>
+            <PrivateComponent>
+              <Link
+                to={`/about/edit`}
+                className="btn btn-go d-block btn-lg mb-5"
+              >
+                Edit About
+              </Link>
+            </PrivateComponent>
             <AboutMe />
             <Portfolio />
           </div>

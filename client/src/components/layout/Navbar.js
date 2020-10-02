@@ -1,7 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
+// Redux
+import { connect } from "react-redux";
+import PrivateComponent from "../routing/PrivateComponent";
+import { logoutUser } from "../../actions/authActions";
+
 // FIXME Reactstrap
-export const Navbar = () => {
+const Navbar = ({ auth: { isAuthenticated }, logoutUser }) => {
   return (
     <nav className="navbar navbar-expand-sm sticky-top">
       <div className="container">
@@ -29,6 +36,13 @@ export const Navbar = () => {
                 About
               </Link>
             </li>
+            <PrivateComponent>
+              <li className="px-2 mt-1">
+                <a className="btn btn-go" onClick={(e) => logoutUser()}>
+                  Logout
+                </a>
+              </li>
+            </PrivateComponent>
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item px-2">
@@ -65,3 +79,13 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+Navbar.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logoutUser })(Navbar);

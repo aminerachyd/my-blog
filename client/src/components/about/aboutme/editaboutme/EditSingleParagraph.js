@@ -68,7 +68,6 @@ const EditSingleParagraph = ({
     }
   };
 
-  // TODO Gotta remove item here
   const deleteParagraph = (e) => {
     e.preventDefault();
     deleteAboutParagraph(formData.id);

@@ -94,7 +94,6 @@ export default function (state = initialState, action) {
         error: payload,
         loading: false,
       };
-    // TODO update state
     default:
       return state;
   }

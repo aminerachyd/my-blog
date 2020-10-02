@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 // Redux
 import { getPost } from "../../actions/postActions";
 import { connect } from "react-redux";
+import PrivateComponent from "../routing/PrivateComponent";
 
 const SingleBlogPost = ({
   getPost,
@@ -79,12 +80,14 @@ const SingleBlogPost = ({
               </div>
             </div>
 
-            <Link
-              to={`/blog/blog-post/${id}/edit`}
-              className="btn btn-go d-block btn-lg mb-3"
-            >
-              Edit this post
-            </Link>
+            <PrivateComponent>
+              <Link
+                to={`/blog/blog-post/${id}/edit`}
+                className="btn btn-go d-block btn-lg mb-3"
+              >
+                Edit this post
+              </Link>
+            </PrivateComponent>
             <Link to="/blog" className="btn btn-go d-block btn-lg">
               Go back to all posts
             </Link>

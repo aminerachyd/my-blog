@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { Navbar } from "./components/layout/Navbar";
+import Navbar from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { Homepage } from "./components/homepage/Homepage";
 import { About } from "./components/about/About";
@@ -26,15 +27,19 @@ function App() {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/blog" component={Blog} />
-          <Route exact path="/blog/new-post" component={NewSingleBlogPost} />
           <Route exact path="/blog/blog-post/:id" component={SingleBlogPost} />
-          <Route
+          <Route exact path="/about" component={About} />
+          <PrivateRoute
+            exact
+            path="/blog/new-post"
+            component={NewSingleBlogPost}
+          />
+          <PrivateRoute
             exact
             path="/blog/blog-post/:id/edit"
             component={EditSingleBlogPost}
           />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/about/edit" component={EditAbout} />
+          <PrivateRoute exact path="/about/edit" component={EditAbout} />
         </Switch>
         <Footer />
       </Router>

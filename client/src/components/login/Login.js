@@ -14,7 +14,6 @@ const Login = ({ auth, loginUser }) => {
   const { email, password } = formData;
 
   const onChange = (e) => {
-    // TODO onChange here
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -22,9 +21,7 @@ const Login = ({ auth, loginUser }) => {
   };
 
   const onSubmit = (e) => {
-    // TODO onSubmit here
     e.preventDefault();
-    console.log(email, password);
     loginUser(email, password);
   };
 
@@ -60,7 +57,11 @@ const Login = ({ auth, loginUser }) => {
               className="btn btn-block btn-lg btn-go float-right"
               value="Login"
             />
-            <a className="btn btn-block btn-lg btn-go float-right">
+            {/* LUL */}
+            <a
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO"
+              className="btn btn-block btn-lg btn-go float-right"
+            >
               Create An Admin Account
             </a>
           </form>

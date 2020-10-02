@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 // Redux
 import { connect } from "react-redux";
 import { getPosts } from "../../../actions/postActions";
+import PrivateComponent from "../../routing/PrivateComponent";
 
 const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
@@ -16,17 +17,21 @@ const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
     <Fragment>
       <h2 className="display-4">All Posts</h2>
       <hr />
-      <Link to="/blog/new-post" className="btn btn-primary btn-block">
-        Add New Post
-      </Link>
+      <PrivateComponent>
+        <Link to="/blog/new-post" className="btn btn-primary btn-block">
+          Add New Post
+        </Link>
+      </PrivateComponent>
       <Fragment>Posts Loading</Fragment>
     </Fragment>
   ) : (
     <Fragment>
       <h2 className="display-4">All Posts</h2> <hr />
-      <a href="/blog/new-post" className="btn btn-primary btn-block">
-        Add New Post
-      </a>
+      <PrivateComponent>
+        <Link to="/blog/new-post" className="btn btn-primary btn-block">
+          Add New Post
+        </Link>
+      </PrivateComponent>
       {posts.map((post) => (
         <BlogPostPreview key={post.id} post={post} />
       ))}
