@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Login = () => {
+// Redux
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+
+const Login = ({ auth, loginUser }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,6 +25,7 @@ const Login = () => {
     // TODO onSubmit here
     e.preventDefault();
     console.log(email, password);
+    loginUser(email, password);
   };
 
   return (
@@ -65,6 +70,13 @@ const Login = () => {
   );
 };
 
-Login.propTypes = {};
+Login.propTypes = {
+  auth: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+};
 
-export default Login;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);
