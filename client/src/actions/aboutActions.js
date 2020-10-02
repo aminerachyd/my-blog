@@ -84,7 +84,7 @@ export const addAboutParagraph = (newParagraph) => async (dispatch) => {
 
 export const deleteAboutParagraph = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/about/paragraphs/${id}`);
+    if (id !== "1") await axios.delete(`/about/paragraphs/${id}`);
 
     dispatch({
       type: DELETE_ABOUT_PARAGRAPH,
@@ -171,7 +171,7 @@ export const addAboutProject = (newProject) => async (dispatch) => {
 
 export const deleteAboutProject = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/about/projects/${id}`);
+    if (id !== "1") await axios.delete(`/about/projects/${id}`);
 
     dispatch({
       type: DELETE_ABOUT_PROJECT,

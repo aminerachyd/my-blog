@@ -39,12 +39,17 @@ export default function (state = initialState, action) {
         paragraphs: [...state.paragraphs, payload],
       };
     case UPDATE_ABOUT_PARAGRAPH:
-      const { id, image, text, order } = payload;
-
       return {
         ...state,
         paragraphs: state.paragraphs.map((paragraph) =>
-          paragraph.id === id ? { ...paragraph, image, text, order } : paragraph
+          paragraph.id === payload.id
+            ? {
+                ...paragraph,
+                image: payload.image,
+                text: payload.text,
+                order: payload.order,
+              }
+            : paragraph
         ),
         loading: false,
       };
@@ -61,13 +66,28 @@ export default function (state = initialState, action) {
         ...state,
         projects: [...state.projects, payload],
       };
+    case UPDATE_ABOUT_PROJECT:
+      return {
+        ...state,
+        projects: state.projects.map((project) =>
+          project.id === payload.id
+            ? {
+                ...project,
+                image: payload.image,
+                title: payload.title,
+                description: payload.description,
+                link: payload.link,
+              }
+            : project
+        ),
+        loading: false,
+      };
     case DELETE_ABOUT_PROJECT:
       return {
         ...state,
         projects: state.projects.filter((project) => project.id !== payload),
         loading: false,
       };
-    case UPDATE_ABOUT_PROJECT:
     case ABOUT_ERROR:
       return {
         ...state,

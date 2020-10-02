@@ -32,7 +32,7 @@ const EditParagraphs = ({ paragraphs }) => {
     )
       setParagraphsState({
         ...paragraphsState,
-        isAdded: false, // FIXME might be buggy
+        isAdded: false,
         paragraphs: paragraphsState.paragraphs.filter(
           (paragraph) => paragraph.id !== "1"
         ),
@@ -40,7 +40,7 @@ const EditParagraphs = ({ paragraphs }) => {
     else
       setParagraphsState({
         ...paragraphsState,
-        isAdded: false, // FIXME might be buggy
+        isAdded: false,
         paragraphs: paragraphsState.paragraphs.filter(
           (paragraph) => paragraph.id !== id
         ),
