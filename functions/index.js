@@ -20,9 +20,4 @@ app.use("/about", require("./routes/about"));
 app.use("/files", require("./routes/files"));
 app.use("/mail", require("./routes/mail"));
 
-// FIXME Serve static assets ?
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
-// });
-
 exports.api = functions.https.onRequest(app);
