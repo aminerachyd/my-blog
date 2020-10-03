@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { Homepage } from "./components/homepage/Homepage";

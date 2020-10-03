@@ -8,18 +8,19 @@ import PrivateComponent from "../routing/PrivateComponent";
 import { logoutUser } from "../../actions/authActions";
 
 // FIXME Reactstrap
-const Navbar = ({ auth: { isAuthenticated }, logoutUser }) => {
+const Navbar = ({ auth, logoutUser }) => {
   return (
     <nav className="navbar navbar-expand-sm sticky-top">
       <div className="container">
         <button
           className="navbar-toggler"
+          type="button"
           data-toggle="collapse"
           data-target="#navbarCollapse"
         >
           <i className="fas fa-bars"></i>
         </button>
-        <div className="collapse navbar-collapse px-5 py-" id="navbarCollapse">
+        <div className="collapse navbar-collapse px-5 " id="navbarCollapse">
           <ul className="navbar-nav">
             <li className="nav-item px-2">
               <Link to="/" className="nav-link">
@@ -74,7 +75,6 @@ const Navbar = ({ auth: { isAuthenticated }, logoutUser }) => {
             </li>
           </ul>
         </div>
-        <div></div>
       </div>
     </nav>
   );
