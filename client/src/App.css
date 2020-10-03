@@ -75,10 +75,6 @@ nav a.active {
   color: black;
   font-size: 120%;
 }
-/* Side area */
-#sideArea {
-  height: 500px;
-}
 
 /* Author info */
 #authorInfo {
@@ -96,7 +92,6 @@ nav a.active {
   background-color: white;
   font-size: 150%;
   color: #1e1e24;
-  margin-top: 100px !important;
 }
 
 /* Blog paragraph */

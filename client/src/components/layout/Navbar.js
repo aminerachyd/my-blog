@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import PrivateComponent from "../routing/PrivateComponent";
 import { logoutUser } from "../../actions/authActions";
 
-// FIXME Reactstrap
 const Navbar = ({ auth, logoutUser }) => {
   return (
     <nav className="navbar navbar-expand-sm sticky-top">
