@@ -1,4 +1,4 @@
-import axios from "../axiosConfig";
+import axios from "../utils/axiosConfig";
 import {
   GET_POSTS,
   GET_POST,

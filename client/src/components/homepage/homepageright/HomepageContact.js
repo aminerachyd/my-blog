@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import axios from "../../../axiosConfig";
+import axios from "../../../utils/axiosConfig";
 
 export const HomepageContact = () => {
   const [formData, setFormData] = useState({

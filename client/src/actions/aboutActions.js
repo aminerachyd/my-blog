@@ -9,7 +9,7 @@ import {
   DELETE_ABOUT_PROJECT,
   ABOUT_ERROR,
 } from "./types";
-import axios from "../axiosConfig";
+import axios from "../utils/axiosConfig";
 
 export const getAboutParagraphs = () => async (dispatch) => {
   try {
