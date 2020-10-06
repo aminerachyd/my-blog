@@ -8,17 +8,16 @@ import { connect } from "react-redux";
 import { getPosts } from "../../../actions/postActions";
 import PrivateComponent from "../../routing/PrivateComponent";
 
-const BlogPosts = ({ getPosts, post: { posts, loading }, items }) => {
+const BlogPosts = ({ getPosts, post: { posts, loading, search } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
   // TODO implementing search functionality
+  // Search is transferred to store, cant pull it here
   const [itemsState, setItemsState] = useState({
-    itemsToSearch: items,
+    itemsToSearch: search,
   });
-
-  const { itemsToSearch } = itemsState;
 
   return loading ? (
     <Fragment>
@@ -33,7 +32,7 @@ const BlogPosts = ({ getPosts, post: { posts, loading }, items }) => {
     </Fragment>
   ) : (
     <Fragment>
-      {!itemsToSearch ? (
+      {!itemsState.itemsToSearch ? (
         <Fragment>
           <h2 className="display-4">All Posts</h2> <hr />
           <PrivateComponent>
@@ -46,7 +45,9 @@ const BlogPosts = ({ getPosts, post: { posts, loading }, items }) => {
           ))}{" "}
         </Fragment>
       ) : (
-        <h1>Search items</h1>
+        <Fragment>
+          <h1>Search items</h1>
+        </Fragment>
       )}
     </Fragment>
   );

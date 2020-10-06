@@ -5,11 +5,13 @@ import {
   UPDATE_POST,
   DELETE_POST,
   ADD_POST,
+  SEARCH_POSTS,
 } from "../actions/types";
 
 const initialState = {
   posts: [],
   post: {},
+  search: "",
   loading: true,
   error: {},
 };
@@ -46,8 +48,14 @@ export default function (state = initialState, action) {
         ...state,
         posts: [...state.posts, payload],
       };
-    // TODO Update state
+    case SEARCH_POSTS:
+      // TODO Search state
+      return {
+        ...state,
+        search: payload,
+      };
     case UPDATE_POST:
+    // TODO Update state
     default:
       return state;
   }

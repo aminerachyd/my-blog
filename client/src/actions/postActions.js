@@ -6,6 +6,7 @@ import {
   UPDATE_POST,
   DELETE_POST,
   ADD_POST,
+  SEARCH_POSTS,
 } from "./types";
 
 export const getPosts = () => async (dispatch) => {
@@ -87,6 +88,7 @@ export const deletePost = (id) => async (dispatch) => {
     });
   }
 };
+
 export const addPost = (newPost) => async (dispatch) => {
   try {
     await axios.post(`/posts/`, newPost);
@@ -99,8 +101,26 @@ export const addPost = (newPost) => async (dispatch) => {
     dispatch({
       type: POST_ERROR,
       payload: {
-        //   TODO fix error system
-        msg: "Server Error",
+        //   todo fix error system
+        msg: "server error",
+        status: 500,
+      },
+    });
+  }
+};
+
+export const dispatchSearch = (search) => (dispatch) => {
+  try {
+    dispatch({
+      type: SEARCH_POSTS,
+      payload: search,
+    });
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        //   todo fix error system
+        msg: "server error",
         status: 500,
       },
     });

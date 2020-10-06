@@ -1,12 +1,14 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 
-const PostSearch = ({ searchItems }) => {
+// Redux
+import { connect } from "react-redux";
+import { dispatchSearch } from "../../actions/postActions";
+
+const PostSearch = ({ searchItems, dispatchSearch, post }) => {
   const [searchInput, setSearchInput] = useState({
     search: "",
   });
-
-  const { search } = searchInput;
 
   const onChange = (e) => {
     e.preventDefault();
@@ -14,7 +16,11 @@ const PostSearch = ({ searchItems }) => {
       ...searchInput,
       [e.target.name]: e.target.value,
     });
-    searchItems(search);
+  };
+
+  const onClick = (e) => {
+    e.preventDefault();
+    dispatchSearch(searchInput.search);
   };
 
   return (
@@ -29,6 +35,11 @@ const PostSearch = ({ searchItems }) => {
           placeholder="Type Some Keywords"
           name="search"
         />
+        <div className="input-group-append" onClick={(e) => onClick(e)}>
+          <button class="btn btn-go" type="button">
+            Search
+          </button>
+        </div>
       </div>
       <div className="input-group form-group justify-content-center">
         <span className="h3">Tags :</span>
@@ -60,4 +71,8 @@ PostSearch.propTypes = {
   searchItems: PropTypes.func.isRequired,
 };
 
-export default PostSearch;
+const mapStateToProps = (state) => ({
+  post: state.post,
+});
+
+export default connect(mapStateToProps, { dispatchSearch })(PostSearch);
