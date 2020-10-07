@@ -16,36 +16,26 @@ const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
   const search = useSelector((state) => state.post.search);
 
   // TODO search available, have to map through posts now
-  return loading ? (
+  return (
     <Fragment>
-      <h2 className="display-4">All Posts</h2>
-      <hr />
-      <PrivateComponent>
-        <Link to="/blog/new-post" className="btn btn-primary btn-block">
-          Add New Post
-        </Link>
-      </PrivateComponent>
-      <Fragment>Posts Loading</Fragment>
-    </Fragment>
-  ) : (
-    <Fragment>
-      {!search ? (
-        <Fragment>
-          <h2 className="display-4">All Posts</h2> <hr />
-          <PrivateComponent>
-            <Link to="/blog/new-post" className="btn btn-primary btn-block">
-              Add New Post
-            </Link>
-          </PrivateComponent>
-          {posts.map((post) => (
-            <BlogPostPreview key={post.id} post={post} />
-          ))}{" "}
-        </Fragment>
-      ) : (
-        <Fragment>
-          <h1>Search items</h1>
-        </Fragment>
-      )}
+      <Fragment>
+        <h2 className="display-4">{search ? "Searched Posts" : "All Posts"}</h2>{" "}
+        <hr />
+        <PrivateComponent>
+          <Link to="/blog/new-post" className="btn btn-primary btn-block">
+            Add New Post
+          </Link>
+        </PrivateComponent>
+        {loading ? (
+          <Fragment>Posts Loading</Fragment>
+        ) : !search ? (
+          posts.map((post) => <BlogPostPreview key={post.id} post={post} />)
+        ) : (
+          posts
+            .filter((post) => post.title.includes(search))
+            .map((post) => <BlogPostPreview key={post.id} post={post} />)
+        )}{" "}
+      </Fragment>
     </Fragment>
   );
 };
