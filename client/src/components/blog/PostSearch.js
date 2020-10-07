@@ -20,7 +20,16 @@ const PostSearch = ({ searchItems, dispatchSearch, post }) => {
 
   const onClick = (e) => {
     e.preventDefault();
-    dispatchSearch(searchInput.search);
+    switch (e.target.name) {
+      case "search":
+        dispatchSearch(searchInput.search);
+        break;
+      case "reset":
+        dispatchSearch("");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -35,9 +44,22 @@ const PostSearch = ({ searchItems, dispatchSearch, post }) => {
           placeholder="Type Some Keywords"
           name="search"
         />
-        <div className="input-group-append" onClick={(e) => onClick(e)}>
-          <button class="btn btn-go" type="button">
+        <div className="input-group-append">
+          <button
+            class="btn btn-go"
+            type="button"
+            name="search"
+            onClick={(e) => onClick(e)}
+          >
             Search
+          </button>
+          <button
+            class="btn btn-go"
+            type="button"
+            name="reset"
+            onClick={(e) => onClick(e)}
+          >
+            Reset
           </button>
         </div>
       </div>

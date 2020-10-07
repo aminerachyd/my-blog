@@ -49,7 +49,6 @@ export default function (state = initialState, action) {
         posts: [...state.posts, payload],
       };
     case SEARCH_POSTS:
-      // TODO Search state
       return {
         ...state,
         search: payload,

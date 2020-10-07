@@ -4,21 +4,18 @@ import { BlogPostPreview } from "./BlogPostPreview";
 import PropTypes from "prop-types";
 
 // Redux
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { getPosts } from "../../../actions/postActions";
 import PrivateComponent from "../../routing/PrivateComponent";
 
-const BlogPosts = ({ getPosts, post: { posts, loading, search } }) => {
+const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
-  // TODO implementing search functionality
-  // Search is transferred to store, cant pull it here
-  const [itemsState, setItemsState] = useState({
-    itemsToSearch: search,
-  });
+  const search = useSelector((state) => state.post.search);
 
+  // TODO search available, have to map through posts now
   return loading ? (
     <Fragment>
       <h2 className="display-4">All Posts</h2>
@@ -32,7 +29,7 @@ const BlogPosts = ({ getPosts, post: { posts, loading, search } }) => {
     </Fragment>
   ) : (
     <Fragment>
-      {!itemsState.itemsToSearch ? (
+      {!search ? (
         <Fragment>
           <h2 className="display-4">All Posts</h2> <hr />
           <PrivateComponent>
