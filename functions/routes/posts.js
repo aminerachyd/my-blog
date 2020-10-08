@@ -1,5 +1,6 @@
 const express = require("express");
 const { firestore } = require("../config/firebaseConfig");
+const verifyToken = require("../middlewares/verifyToken");
 
 const router = express.Router();
 
@@ -55,7 +56,7 @@ router.get("/:id", async (req, res) => {
 
 // @route   POST api/posts
 // @desc    Adds a post to the database
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   try {
     const date = new Date().toISOString();
     const { title, body, tags } = req.body;
@@ -77,7 +78,7 @@ router.post("/", async (req, res) => {
 
 // @route   DELETE api/posts/:id
 // @desc    Deletes a specefic post from the database with its ID
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
   try {
     const docSnapshot = await postsCollection.doc(req.params.id).get();
 
@@ -98,7 +99,7 @@ router.delete("/:id", async (req, res) => {
 
 // @route   PUT api/posts/:id
 // @desc    Updates a specefic post from the database with its ID
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
   try {
     const docSnapshot = await postsCollection.doc(req.params.id).get();
 

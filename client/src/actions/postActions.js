@@ -1,4 +1,5 @@
 import axios from "../utils/axiosConfig";
+import { auth } from "../utils/firebaseConfig";
 import {
   GET_POSTS,
   GET_POST,
@@ -51,7 +52,11 @@ export const getPost = (id) => async (dispatch) => {
 
 export const updatePost = (id, updatedPost) => async (dispatch) => {
   try {
-    await axios.put(`/posts/${id}`, updatedPost);
+    const idToken = await auth.currentUser.getIdToken(true);
+
+    await axios.put(`/posts/${id}`, updatedPost, {
+      headers: { token: idToken },
+    });
 
     dispatch({
       type: UPDATE_POST,
@@ -71,7 +76,9 @@ export const updatePost = (id, updatedPost) => async (dispatch) => {
 
 export const deletePost = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/posts/${id}`);
+    const idToken = await auth.currentUser.getIdToken(true);
+
+    await axios.delete(`/posts/${id}`, { headers: { token: idToken } });
 
     dispatch({
       type: DELETE_POST,
@@ -91,7 +98,9 @@ export const deletePost = (id) => async (dispatch) => {
 
 export const addPost = (newPost) => async (dispatch) => {
   try {
-    await axios.post(`/posts/`, newPost);
+    const idToken = await auth.currentUser.getIdToken(true);
+
+    await axios.post(`/posts/`, newPost, { headers: { token: idToken } });
 
     dispatch({
       type: ADD_POST,
