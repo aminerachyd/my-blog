@@ -8,7 +8,7 @@ const truncate = (string, no_words) => {
 };
 
 export const BlogPostPreview = ({
-  post: { id, title, body, lastUpdated, tags },
+  post: { id, title, body, lastUpdated, createdAt, tags },
 }) => {
   return (
     <div className="card my-3 blog-post">
@@ -25,6 +25,11 @@ export const BlogPostPreview = ({
         </Link>
       </div>
       <footer className="card-footer p-3">
+        <footer className="blockquote-footer">
+          <span>
+            Created At : <Moment format="DD/MM/YYYY">{createdAt}</Moment>{" "}
+          </span>
+        </footer>
         <footer className="blockquote-footer">
           <span>
             Last updated : <Moment format="DD/MM/YYYY">{lastUpdated}</Moment>{" "}

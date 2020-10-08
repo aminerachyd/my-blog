@@ -57,7 +57,7 @@ router.get("/:id", async (req, res) => {
 // @desc    Adds a post to the database
 router.post("/", async (req, res) => {
   try {
-    const date = new Date().toUTCString();
+    const date = new Date().toISOString();
     const { title, body, tags } = req.body;
     const newPost = {
       title,
