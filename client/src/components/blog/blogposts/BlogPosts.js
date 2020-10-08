@@ -15,7 +15,6 @@ const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
 
   const search = useSelector((state) => state.post.search);
 
-  // TODO search available, have to map through posts now
   return (
     <Fragment>
       <Fragment>
@@ -32,7 +31,9 @@ const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
           posts.map((post) => <BlogPostPreview key={post.id} post={post} />)
         ) : (
           posts
-            .filter((post) => post.title.includes(search))
+            .filter((post) =>
+              post.title.toLowerCase().includes(search.toLowerCase())
+            )
             .map((post) => <BlogPostPreview key={post.id} post={post} />)
         )}{" "}
       </Fragment>
