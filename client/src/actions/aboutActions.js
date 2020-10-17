@@ -12,7 +12,6 @@ import {
 import axios from "../utils/axiosConfig";
 
 import { fireErrorAlert, fireSuccessAlert } from "../utils/fireAlerts";
-import swal from "@sweetalert/with-react";
 
 export const getAboutParagraphs = () => async (dispatch) => {
   try {

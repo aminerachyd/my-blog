@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { connect, useSelector } from "react-redux";
 import { getPosts } from "../../../actions/postActions";
 import PrivateComponent from "../../routing/PrivateComponent";
+import Spinner from "../../layout/spinner/Spinner";
 
 const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
@@ -26,7 +27,7 @@ const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
           </Link>
         </PrivateComponent>
         {loading ? (
-          <Fragment>Posts Loading</Fragment>
+          <Spinner></Spinner>
         ) : !search ? (
           posts.map((post) => <BlogPostPreview key={post.id} post={post} />)
         ) : (
