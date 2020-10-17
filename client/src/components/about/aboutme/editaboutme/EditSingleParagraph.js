@@ -2,6 +2,8 @@ import React, { Fragment, useState } from "react";
 import AutosizeTextArea from "react-textarea-autosize";
 import PropTypes from "prop-types";
 
+import swal from "@sweetalert/with-react";
+
 // Redux
 import {
   updateAboutParagraph,
@@ -51,27 +53,58 @@ const EditSingleParagraph = ({
     dataToSend.set("image", imageToSend);
 
     if (id !== "1") {
-      const res = await updateAboutParagraph(id, dataToSend);
-
-      setFormData({
-        ...formData,
-        image: res.image,
+      const confirm = await swal({
+        title: "Save changes ?",
+        text: "Are you sure you want to save these changes ?",
+        icon: "warning",
+        buttons: ["No wait", "Yes save changes"],
+        dangerMode: true,
       });
+
+      if (confirm) {
+        const res = await updateAboutParagraph(id, dataToSend);
+
+        setFormData({
+          ...formData,
+          image: res.image,
+        });
+      }
     } else {
-      const res = await addAboutParagraph(dataToSend);
-
-      setFormData({
-        ...formData,
-        id: res.id,
-        image: res.image,
+      const confirm = await swal({
+        title: "Add paragraph ?",
+        text: "Do you wish to add this paragraph ?",
+        icon: "warning",
+        buttons: ["No wait", "Yes add it"],
+        dangerMode: true,
       });
+
+      if (confirm) {
+        const res = await addAboutParagraph(dataToSend);
+
+        setFormData({
+          ...formData,
+          id: res.id,
+          image: res.image,
+        });
+      }
     }
   };
 
-  const deleteParagraph = (e) => {
+  const deleteParagraph = async (e) => {
     e.preventDefault();
-    deleteAboutParagraph(formData.id);
-    deleteParagraphParent(formData.id);
+
+    const confirm = await swal({
+      title: "Delete paragraph ?",
+      text: "Do you wish to delete this paragraph ? This cannot be undone",
+      icon: "warning",
+      buttons: ["No wait", "Yes delete it"],
+      dangerMode: true,
+    });
+
+    if (confirm) {
+      deleteAboutParagraph(formData.id);
+      deleteParagraphParent(formData.id);
+    }
   };
 
   return (

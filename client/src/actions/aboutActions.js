@@ -11,7 +11,8 @@ import {
 } from "./types";
 import axios from "../utils/axiosConfig";
 
-import { fireErrorAlert } from "../utils/fireAlerts";
+import { fireErrorAlert, fireSuccessAlert } from "../utils/fireAlerts";
+import swal from "@sweetalert/with-react";
 
 export const getAboutParagraphs = () => async (dispatch) => {
   try {
@@ -38,7 +39,6 @@ export const updateAboutParagraph = (id, updatedParagraph) => async (
   dispatch
 ) => {
   try {
-    // TOOD add confirm alert
     const res = await axios.put(`/about/paragraphs/${id}`, updatedParagraph);
 
     const { order, text, image } = res.data.paragraph;
@@ -47,6 +47,8 @@ export const updateAboutParagraph = (id, updatedParagraph) => async (
       type: UPDATE_ABOUT_PARAGRAPH,
       payload: { id, order, text, image },
     });
+
+    fireSuccessAlert("Paragraph updated successfully");
 
     return { id, order, text, image };
   } catch (error) {
@@ -67,13 +69,14 @@ export const addAboutParagraph = (newParagraph) => async (dispatch) => {
   try {
     const res = await axios.post(`/about/paragraphs`, newParagraph);
 
-    // TOOD add paragraph added confirm
     const { id, order, text, image } = res.data.paragraph;
 
     dispatch({
       type: ADD_ABOUT_PARAGRAPH,
       payload: { id, order, text, image },
     });
+
+    fireSuccessAlert("Paragraph added successfully");
 
     return { id, order, text, image };
   } catch (error) {
@@ -91,13 +94,16 @@ export const addAboutParagraph = (newParagraph) => async (dispatch) => {
 
 export const deleteAboutParagraph = (id) => async (dispatch) => {
   try {
-    // TODO add delete confirm
-    if (id !== "1") await axios.delete(`/about/paragraphs/${id}`);
+    if (id !== "1") {
+      await axios.delete(`/about/paragraphs/${id}`);
 
-    dispatch({
-      type: DELETE_ABOUT_PARAGRAPH,
-      payload: id,
-    });
+      dispatch({
+        type: DELETE_ABOUT_PARAGRAPH,
+        payload: id,
+      });
+
+      fireSuccessAlert("Paragraph updated successfully");
+    }
   } catch (error) {
     dispatch({
       type: ABOUT_ERROR,
@@ -132,7 +138,6 @@ export const getAboutProjects = () => async (dispatch) => {
 
 export const updateAboutProject = (id, updatedProject) => async (dispatch) => {
   try {
-    // TODO add confirm alert
     const res = await axios.put(`/about/projects/${id}`, updatedProject);
 
     const { image, title, description, link } = res.data.project;
@@ -141,6 +146,8 @@ export const updateAboutProject = (id, updatedProject) => async (dispatch) => {
       type: UPDATE_ABOUT_PROJECT,
       payload: { id, image, title, description, link },
     });
+
+    fireSuccessAlert("Project updated successfully");
 
     return { id, image, title, description, link };
   } catch (error) {
@@ -160,12 +167,13 @@ export const addAboutProject = (newProject) => async (dispatch) => {
   try {
     const res = await axios.post(`/about/projects/`, newProject);
 
-    // TODO add project add alert
     const { id, title, description, image, link } = res.data.project;
     dispatch({
       type: ADD_ABOUT_PROJECT,
       payload: { id, title, description, image, link },
     });
+
+    fireSuccessAlert("Project added successfully");
 
     return { id, title, description, image, link };
   } catch (error) {
@@ -183,13 +191,16 @@ export const addAboutProject = (newProject) => async (dispatch) => {
 
 export const deleteAboutProject = (id) => async (dispatch) => {
   try {
-    // TODO Add confirm alert
-    if (id !== "1") await axios.delete(`/about/projects/${id}`);
+    if (id !== "1") {
+      await axios.delete(`/about/projects/${id}`);
 
-    dispatch({
-      type: DELETE_ABOUT_PROJECT,
-      payload: id,
-    });
+      dispatch({
+        type: DELETE_ABOUT_PROJECT,
+        payload: id,
+      });
+
+      fireSuccessAlert("Project deleted successfully");
+    }
   } catch (error) {
     fireErrorAlert("Something went wrong");
 

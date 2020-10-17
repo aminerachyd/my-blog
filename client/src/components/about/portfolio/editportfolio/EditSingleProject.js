@@ -2,6 +2,8 @@ import React, { Fragment, useState } from "react";
 import AutoresizeTextarea from "react-textarea-autosize";
 import PropTypes from "prop-types";
 
+import swal from "@sweetalert/with-react";
+
 // Redux
 import { connect } from "react-redux";
 import {
@@ -50,29 +52,59 @@ const EditSingleProject = ({
     dataToSend.set("image", imageToSend);
     dataToSend.set("link", formData.link);
     dataToSend.set("description", formData.description);
-    // TODO Modify returns in action/backend
+
     if (id !== "1") {
-      const res = await updateAboutProject(id, dataToSend);
-
-      setFormData({
-        ...formData,
-        image: res.image,
+      const confirm = await swal({
+        title: "Save changes ?",
+        text: "Are you sure you want to save these changes ?",
+        icon: "warning",
+        buttons: ["No wait", "Yes save changes"],
+        dangerMode: true,
       });
+
+      if (confirm) {
+        const res = await updateAboutProject(id, dataToSend);
+
+        setFormData({
+          ...formData,
+          image: res.image,
+        });
+      }
     } else {
-      const res = await addAboutProject(dataToSend);
-
-      setFormData({
-        ...formData,
-        image: res.image,
-        id: res.id,
+      const confirm = await swal({
+        title: "Add project ?",
+        text: "Do you wish to add this project ?",
+        icon: "warning",
+        buttons: ["No wait", "Yes add it"],
+        dangerMode: true,
       });
+
+      if (confirm) {
+        const res = await addAboutProject(dataToSend);
+
+        setFormData({
+          ...formData,
+          image: res.image,
+          id: res.id,
+        });
+      }
     }
   };
 
-  const deleteProject = (e) => {
+  const deleteProject = async (e) => {
     e.preventDefault();
-    deleteAboutProject(formData.id);
-    deleteProjectParent(formData.id);
+    const confirm = await swal({
+      title: "Add project ?",
+      text: "Do you wish to delete this project ? This cannot be undone",
+      icon: "warning",
+      buttons: ["No wait", "Yes delete it"],
+      dangerMode: true,
+    });
+
+    if (confirm) {
+      deleteAboutProject(formData.id);
+      deleteProjectParent(formData.id);
+    }
   };
 
   return (
