@@ -10,6 +10,8 @@ import {
   SEARCH_POSTS,
 } from "./types";
 
+import { fireErrorAlert } from "../utils/fireAlerts";
+
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await axios.get("/posts");
@@ -19,10 +21,11 @@ export const getPosts = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
+    fireErrorAlert("Something went wrong");
+
     dispatch({
       type: POST_ERROR,
       payload: {
-        //   TODO fix error system
         msg: "Server Error",
         status: 500,
       },
@@ -39,10 +42,11 @@ export const getPost = (id) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
+    fireErrorAlert("Something went wrong");
+
     dispatch({
       type: POST_ERROR,
       payload: {
-        //   TODO fix error system
         msg: "Server Error",
         status: 500,
       },
@@ -54,6 +58,7 @@ export const updatePost = (id, updatedPost) => async (dispatch) => {
   try {
     const idToken = await auth.currentUser.getIdToken(true);
 
+    // TODO Add confirm here
     await axios.put(`/posts/${id}`, updatedPost, {
       headers: { token: idToken },
     });
@@ -63,10 +68,11 @@ export const updatePost = (id, updatedPost) => async (dispatch) => {
       payload: updatedPost,
     });
   } catch (error) {
+    fireErrorAlert("Something went wrong");
+
     dispatch({
       type: POST_ERROR,
       payload: {
-        //   TODO fix error system
         msg: "Server Error",
         status: 500,
       },
@@ -78,6 +84,7 @@ export const deletePost = (id) => async (dispatch) => {
   try {
     const idToken = await auth.currentUser.getIdToken(true);
 
+    // TODO Add confirm here
     await axios.delete(`/posts/${id}`, { headers: { token: idToken } });
 
     dispatch({
@@ -85,10 +92,11 @@ export const deletePost = (id) => async (dispatch) => {
       payload: id,
     });
   } catch (error) {
+    fireErrorAlert("Something went wrong");
+
     dispatch({
       type: POST_ERROR,
       payload: {
-        //   TODO fix error system
         msg: "Server Error",
         status: 500,
       },
@@ -102,15 +110,17 @@ export const addPost = (newPost) => async (dispatch) => {
 
     await axios.post(`/posts/`, newPost, { headers: { token: idToken } });
 
+    // TODO Add new post info
     dispatch({
       type: ADD_POST,
       payload: newPost,
     });
   } catch (error) {
+    fireErrorAlert("Something went wrong");
+
     dispatch({
       type: POST_ERROR,
       payload: {
-        //   todo fix error system
         msg: "server error",
         status: 500,
       },
@@ -125,10 +135,11 @@ export const dispatchSearch = (search) => (dispatch) => {
       payload: search,
     });
   } catch (error) {
+    fireErrorAlert("Something went wrong");
+
     dispatch({
       type: POST_ERROR,
       payload: {
-        //   todo fix error system
         msg: "server error",
         status: 500,
       },
