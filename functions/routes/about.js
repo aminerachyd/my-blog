@@ -8,8 +8,6 @@ const projectsCollection = firestore.collection("projects");
 
 const router = express.Router();
 
-// TODO Add GETs by ID ?
-
 // ### PARAGRAPHS ###
 
 // @route   GET api/about/paragraphs

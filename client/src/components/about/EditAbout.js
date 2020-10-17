@@ -10,6 +10,7 @@ import {
 } from "../../actions/aboutActions";
 import EditAboutMe from "./aboutme/editaboutme/EditAboutMe";
 import EditPortfolio from "./portfolio/editportfolio/EditPortfolio";
+import Spinner from "../layout/spinner/Spinner";
 
 const EditAbout = ({
   getAboutParagraphs,
@@ -22,7 +23,7 @@ const EditAbout = ({
   }, [getAboutParagraphs, getAboutProjects]);
 
   return loading ? (
-    <h1>About loading</h1>
+    <Spinner></Spinner>
   ) : (
     <div className="container mt-100">
       <div className="row">

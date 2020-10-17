@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 // Redux
 import { getAboutParagraphs } from "../../../actions/aboutActions";
 import { connect } from "react-redux";
+import Spinner from "../../layout/spinner/Spinner";
 
 const AboutParagraphs = ({
   getAboutParagraphs,
@@ -15,7 +16,7 @@ const AboutParagraphs = ({
   }, [getAboutParagraphs]);
 
   return loading || !paragraphs ? (
-    <Fragment>Loading About</Fragment>
+    <Spinner></Spinner>
   ) : (
     <Fragment>
       {paragraphs.map((paragaph) => (

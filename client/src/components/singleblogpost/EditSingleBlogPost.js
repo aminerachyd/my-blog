@@ -35,7 +35,6 @@ const EditSingleBlogPost = ({
   const submitChange = (e) => {
     e.preventDefault();
     updatePost(id, formData);
-    // TODO save indication
   };
 
   const submitDelete = (e) => {

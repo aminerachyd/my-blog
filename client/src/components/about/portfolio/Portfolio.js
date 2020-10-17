@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 // Redux
 import { connect } from "react-redux";
 import { getAboutProjects } from "../../../actions/aboutActions";
+import Spinner from "../../layout/spinner/Spinner";
 
 const Portfolio = ({ getAboutProjects, about: { projects, loading } }) => {
   useEffect(() => {
@@ -15,7 +16,7 @@ const Portfolio = ({ getAboutProjects, about: { projects, loading } }) => {
     <Fragment>
       <h2 className="display-4 mt-5">Portfolio</h2>
       <hr />
-      Projects Loading
+      <Spinner></Spinner>
     </Fragment>
   ) : (
     <Fragment>

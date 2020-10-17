@@ -54,7 +54,6 @@ export default function (state = initialState, action) {
         search: payload,
       };
     case UPDATE_POST:
-    // TODO Update state
     default:
       return state;
   }
