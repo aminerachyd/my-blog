@@ -12,8 +12,8 @@ export const HomepageRight = () => {
       <div className="row">
         <div className="col">
           <HomepageAuthorInfo />
-          <HomepageSearchBar />
-          <HomepageTopics />
+          {/* <HomepageSearchBar />
+          <HomepageTopics /> */}
           <HomepageContact />
         </div>
       </div>

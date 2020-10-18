@@ -2,7 +2,7 @@ import React from "react";
 
 export const HomepageAuthorInfo = () => {
   const authorInfo =
-    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima a porro excepturi eos reiciendis ratione dicta repellat corrupti eius tempora.";
+    "Hello there, my name is Amine and I am currently a software engineering student who just recently got into web development";
 
   return (
     <div className="container mb-3">

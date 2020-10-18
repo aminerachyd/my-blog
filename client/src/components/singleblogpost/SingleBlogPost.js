@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Spinner from "../layout/spinner/Spinner";
 
 // Redux
 import { getPost } from "../../actions/postActions";
@@ -22,7 +23,7 @@ const SingleBlogPost = ({
   }, [getPost]);
 
   return loading ? (
-    <Fragment>Post Loading</Fragment>
+    <Spinner></Spinner>
   ) : (
     <div className="container mt-100 blog-post">
       <div className="row">
@@ -44,7 +45,8 @@ const SingleBlogPost = ({
                 </span>
               </div>
               <div className="col">
-                <span className="blockquote-footer ml-auto d-block text-right">
+                {/* TODO implement tags */}
+                {/* <span className="blockquote-footer ml-auto d-block text-right">
                   Tags :{" "}
                   {tags &&
                     tags.map((tag) => (
@@ -57,7 +59,7 @@ const SingleBlogPost = ({
                         </a>{" "}
                       </Fragment>
                     ))}
-                </span>
+                </span> */}
               </div>
             </div>
             <hr />

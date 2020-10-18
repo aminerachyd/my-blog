@@ -35,7 +35,8 @@ export const BlogPostPreview = ({
             Last updated : <Moment format="DD/MM/YYYY">{lastUpdated}</Moment>{" "}
           </span>
         </footer>
-        <span className="blockquote-footer ml-auto d-block text-right">
+        {/* TOOD implement tags */}
+        {/* <span className="blockquote-footer ml-auto d-block text-right">
           Tags :{" "}
           {tags.map((tag) => (
             <Fragment>
@@ -44,7 +45,7 @@ export const BlogPostPreview = ({
               </a>{" "}
             </Fragment>
           ))}
-        </span>
+        </span> */}
       </footer>
     </div>
   );

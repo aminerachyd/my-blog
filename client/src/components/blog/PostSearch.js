@@ -63,7 +63,8 @@ const PostSearch = ({ searchItems, dispatchSearch, post }) => {
           </button>
         </div>
       </div>
-      <div className="input-group form-group justify-content-center">
+      {/* TODO implement tags */}
+      {/* <div className="input-group form-group justify-content-center">
         <span className="h3">Tags :</span>
         <div className="btn-group ml-2 align-self-start">
           <button
@@ -84,7 +85,7 @@ const PostSearch = ({ searchItems, dispatchSearch, post }) => {
             Lifestyle
           </button>
         </div>
-      </div>
+      </div> */}
     </Fragment>
   );
 };
