@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
 import axios from "../../../utils/axiosConfig";
+import {
+  fireErrorAlert,
+  fireInfoAlert,
+  fireSuccessAlert,
+} from "../../../utils/fireAlerts";
 
 export const HomepageContact = () => {
   const [formData, setFormData] = useState({
@@ -18,12 +23,13 @@ export const HomepageContact = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    fireInfoAlert("Sending mail...");
 
     try {
       const res = await axios.post("/mail", formData);
-      console.log(res);
+      fireSuccessAlert("Mail sent");
     } catch (error) {
+      fireErrorAlert("Something went wrong");
       console.log(error);
     }
   };
