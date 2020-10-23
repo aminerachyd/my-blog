@@ -6,6 +6,7 @@ import TextareaAutosize from "react-textarea-autosize";
 // Redux
 import { addPost } from "../../actions/postActions";
 import { connect } from "react-redux";
+import RichTextEditor from "../richtexteditor/RichTextEditor";
 
 const NewSingleBlogPost = ({ addPost, post }) => {
   const [formData, setFormData] = useState({
@@ -51,6 +52,7 @@ const NewSingleBlogPost = ({ addPost, post }) => {
                       </div>
                       <div className="form-group">
                         <label className="h4">Post body</label>
+                        <RichTextEditor />
                         <TextareaAutosize
                           onChange={(e) => onChange(e)}
                           placeholder="The body of the new post"

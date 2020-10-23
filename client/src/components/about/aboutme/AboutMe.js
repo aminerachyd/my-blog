@@ -9,8 +9,6 @@ const AboutMe = () => {
       <hr />
 
       {/* FIXME for testing purposes */}
-      <RichTextEditor />
-
       <div className="card my-3 blog-post">
         <div className="container card-body p-5">
           <AboutParagraphs />
