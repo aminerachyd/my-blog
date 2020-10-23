@@ -62,7 +62,7 @@ const Leaf = (props) => {
   );
 };
 
-const RichTextEditor = () => {
+const RichTextEditor = ({ changeBody }) => {
   const editor = useMemo(() => withReact(createEditor()), []);
   const [value, setValue] = useState([
     {
@@ -89,7 +89,10 @@ const RichTextEditor = () => {
       <Slate
         editor={editor}
         value={value}
-        onChange={(newValue) => setValue(newValue)}
+        onChange={(newValue) => {
+          setValue(newValue);
+          changeBody(newValue);
+        }}
       >
         {/* <div>
           <button

@@ -11,7 +11,8 @@ import RichTextEditor from "../richtexteditor/RichTextEditor";
 const NewSingleBlogPost = ({ addPost, post }) => {
   const [formData, setFormData] = useState({
     title: "",
-    body: "",
+    // body: "",
+    body: [],
     tags: [],
   });
 
@@ -21,6 +22,14 @@ const NewSingleBlogPost = ({ addPost, post }) => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const changeBody = (bodyText) => {
+    setFormData({
+      ...formData,
+      body: bodyText,
+    });
+  };
+
   const submitPost = (e) => {
     e.preventDefault();
     addPost(formData);
@@ -52,7 +61,7 @@ const NewSingleBlogPost = ({ addPost, post }) => {
                       </div>
                       <div className="form-group">
                         <label className="h4">Post body</label>
-                        <RichTextEditor />
+                        <RichTextEditor changeBody={changeBody} />
                         <TextareaAutosize
                           onChange={(e) => onChange(e)}
                           placeholder="The body of the new post"
