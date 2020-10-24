@@ -26,7 +26,7 @@ export const HomepageContact = () => {
     fireInfoAlert("Sending mail...");
 
     try {
-      const res = await axios.post("/mail", formData);
+      await axios.post("/mail", formData);
       fireSuccessAlert("Mail sent");
     } catch (error) {
       fireErrorAlert("Something went wrong");

@@ -79,12 +79,12 @@ const NewSingleBlogPost = ({ addPost, post }) => {
                 </div>
               </div>
             </div>
-            <a
+            <button
               onClick={(e) => submitPost(e)}
               className="btn btn-go d-block btn-lg mb-3"
             >
               <i className="fas fa-plus"></i> Add New Post
-            </a>
+            </button>
             <hr />
             <Link to="/blog" className="btn btn-danger d-block btn-lg mb-3">
               <i className="fas fa-arrow-left"></i> Abort And Go Back To Posts

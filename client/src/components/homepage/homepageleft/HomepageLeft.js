@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React from "react";
 
 import HomepagePosts from "./HomepagePosts";
 import { Link } from "react-router-dom";

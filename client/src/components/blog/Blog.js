@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PostSearch from "./PostSearch";
 import BlogPosts from "./blogposts/BlogPosts";
 

@@ -38,9 +38,9 @@ const Navbar = ({ auth, logoutUser }) => {
             </li>
             <PrivateComponent>
               <li className="px-2 mt-1">
-                <a className="btn btn-go" onClick={(e) => logoutUser()}>
+                <button className="btn btn-go" onClick={(e) => logoutUser()}>
                   Logout
-                </a>
+                </button>
               </li>
             </PrivateComponent>
           </ul>

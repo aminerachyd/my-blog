@@ -1,7 +1,5 @@
 import React from "react";
 import { HomepageAuthorInfo } from "./HomepageAuthorInfo";
-import { HomepageSearchBar } from "./HomepageSearchBar";
-import { HomepageTopics } from "./HomepageTopics";
 import { HomepageContact } from "./HomepageContact";
 
 export const HomepageRight = () => {

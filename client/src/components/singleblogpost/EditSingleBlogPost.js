@@ -1,4 +1,4 @@
-import React, { useState, useEffect, setState, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextareaAutosize from "react-textarea-autosize";
@@ -23,7 +23,7 @@ const EditSingleBlogPost = ({
 
   useEffect(() => {
     getPost(id);
-  }, [getPost]);
+  }, [getPost, id]);
 
   const [formData, setFormData] = useState({ title, body, tags });
 
@@ -107,22 +107,22 @@ const EditSingleBlogPost = ({
                 </div>
               </div>
             </div>
-            <a
+            <button
               onClick={(e) => submitChange(e)}
               className="btn btn-go d-block btn-lg mb-3"
             >
               <i className="far fa-save"></i> Save changes
-            </a>
+            </button>
             <Link to="/blog" className="btn btn-go d-block btn-lg">
               <i className="fas fa-arrow-left"></i> Go back to posts
             </Link>{" "}
             <hr />
-            <a
+            <button
               onClick={(e) => submitDelete(e)}
               className="btn btn-danger d-block btn-lg mb-3"
             >
               <i className="fas fa-trash-alt"></i> Delete this post
-            </a>{" "}
+            </button>{" "}
           </div>
         </div>
       </div>

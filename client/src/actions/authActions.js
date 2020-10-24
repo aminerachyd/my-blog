@@ -1,11 +1,7 @@
 import { LOGIN_USER, AUTH_ERROR, LOGOUT_USER } from "./types";
 import { auth } from "../utils/firebaseConfig";
 
-import {
-  fireSuccessAlert,
-  fireErrorAlert,
-  fireInfoAlert,
-} from "../utils/fireAlerts";
+import { fireSuccessAlert, fireErrorAlert } from "../utils/fireAlerts";
 
 export const loginUser = (email, password) => async (dispatch) => {
   try {

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import AutosizeTextArea from "react-textarea-autosize";
 import PropTypes from "prop-types";
 
