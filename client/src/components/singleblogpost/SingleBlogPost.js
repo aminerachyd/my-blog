@@ -76,7 +76,12 @@ const SingleBlogPost = ({
                       />
                     </div> */}
                   <div className="col">
-                    <p className="card-text my-2">{body}</p>
+                    <p
+                      style={{ whiteSpace: "pre-wrap" }}
+                      className="card-text my-2"
+                    >
+                      {body}
+                    </p>
                   </div>
                 </div>
               </div>

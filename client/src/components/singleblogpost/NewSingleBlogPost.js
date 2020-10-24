@@ -6,27 +6,19 @@ import TextareaAutosize from "react-textarea-autosize";
 // Redux
 import { addPost } from "../../actions/postActions";
 import { connect } from "react-redux";
-import RichTextEditor from "../richtexteditor/RichTextEditor";
 
 const NewSingleBlogPost = ({ addPost, post }) => {
   const [formData, setFormData] = useState({
     title: "",
-    // body: "",
-    body: [],
+    body: "",
     tags: [],
   });
 
   const onChange = (e) => {
+    console.log(e.target.value);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    });
-  };
-
-  const changeBody = (bodyText) => {
-    setFormData({
-      ...formData,
-      body: bodyText,
     });
   };
 
@@ -61,7 +53,6 @@ const NewSingleBlogPost = ({ addPost, post }) => {
                       </div>
                       <div className="form-group">
                         <label className="h4">Post body</label>
-                        <RichTextEditor changeBody={changeBody} />
                         <TextareaAutosize
                           onChange={(e) => onChange(e)}
                           placeholder="The body of the new post"

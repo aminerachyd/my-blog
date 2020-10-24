@@ -14,7 +14,7 @@ export const BlogPostPreview = ({
     <div className="card my-3 blog-post">
       <div className="card-body p-5">
         <h3 className="card-title">{title}</h3>
-        <p className="card-text">
+        <p style={{ whiteSpace: "pre-wrap" }} className="card-text">
           {body.length > 20 ? `${truncate(body, 20)} ...` : body}
         </p>
         <Link

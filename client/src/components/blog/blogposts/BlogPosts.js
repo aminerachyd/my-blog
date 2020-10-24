@@ -21,12 +21,11 @@ const BlogPosts = ({ getPosts, post: { posts, loading } }) => {
       <Fragment>
         <h2 className="display-4">{search ? "Searched Posts" : "All Posts"}</h2>{" "}
         <hr />
-        {/* FIXME for testing purposes */}
-        {/* <PrivateComponent> */}
-        <Link to="/blog/new-post" className="btn btn-primary btn-block">
-          Add New Post
-        </Link>
-        {/* </PrivateComponent> */}
+        <PrivateComponent>
+          <Link to="/blog/new-post" className="btn btn-primary btn-block">
+            Add New Post
+          </Link>
+        </PrivateComponent>
         {loading ? (
           <Spinner></Spinner>
         ) : !search ? (

@@ -27,9 +27,11 @@ function App() {
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/blog/blog-post/:id" component={SingleBlogPost} />
           <Route exact path="/about" component={About} />
-          {/* FIXME for testing purposes */}
-          {/* <PrivateRoute */}
-          <Route exact path="/blog/new-post" component={NewSingleBlogPost} />
+          <PrivateRoute
+            exact
+            path="/blog/new-post"
+            component={NewSingleBlogPost}
+          />
           <PrivateRoute
             exact
             path="/blog/blog-post/:id/edit"
